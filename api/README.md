@@ -13,6 +13,7 @@ Restful backend application for Ekis project
 ```shell
 git clone https://github.com/mberrueta/uade_sem_int_tpo.git
 cd uade_sem_int_tpo/api
+bundle install # intall the libraries
 docker-compose up # -d to run in detach mode
 ```
 
@@ -35,7 +36,7 @@ rails db
 
 ## Run tests
 ```
-bundle install # intall the libraries
+rake
 ```
 
 
