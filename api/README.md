@@ -39,4 +39,28 @@ rails db
 rake
 ```
 
+## Structure
 
+```
+$ tree -d -I tmp
+.
+├── app
+│   ├── controllers
+│   │   └── concerns
+│   ├── mailers
+│   ├── models
+│   │   └── concerns
+│   └── views
+│       └── layouts
+├── config
+│   ├── environments
+│   ├── initializers
+│   └── locales
+├── db
+├── features
+│   ├── step_definitions
+│   └── support
+├── lib
+│   └── tasks
+├── spec
+```
