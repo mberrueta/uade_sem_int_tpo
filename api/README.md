@@ -1,24 +1,41 @@
-# README
+# Ekis API
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Restful backend application for Ekis project
 
-Things you may want to cover:
+## Requirements
 
-* Ruby version
+- Docker
+- Docker Compose
+- Ruby (v2.3.6)
 
-* System dependencies
+## Install
 
-* Configuration
+```shell
+git clone https://github.com/mberrueta/uade_sem_int_tpo.git
+cd uade_sem_int_tpo/api
+docker-compose up # -d to run in detach mode
+```
 
-* Database creation
+## Db
 
-* Database initialization
+```shell
+# create db
+rake db:create
+rake db:migrate
+rake db:seed
 
-* How to run the test suite
+# `rake db:drop` if you want to drop db to re-create
 
-* Services (job queues, cache servers, search engines, etc.)
+# Enter db console
+rails db
+# \h for help
+# \x for column mode
+# \q to quit
+```
 
-* Deployment instructions
+## Run tests
+```
+bundle install # intall the libraries
+```
 
-* ...
+
