@@ -16,7 +16,7 @@ begin
 
   namespace :cucumber do
     Cucumber::Rake::Task.new(:all) do |t|
-      t.cucumber_opts = %w[--format progress]
+      t.cucumber_opts = %w[--format pretty]
     end
   end
 end
