@@ -6,7 +6,7 @@ Restful backend application for Ekis project
 
 - Docker
 - Docker Compose
-- Ruby (v2.3.6)
+- Ruby (v2.5.1)
 
 ## Install
 
@@ -39,28 +39,53 @@ rails db
 rake
 ```
 
+## Heroku deploy
+```
+# in the root git folder `uade_sem_int_tpo/`
+heroku login
+heroku git:remote -a uade-sem-int-tpo-api
+git subtree push --prefix api heroku master
+heroku run rake db:migrate db:seed
+# server access
+heroku run bash
+
+```
+
 ## Structure
 
 ```
 $ tree -d -I tmp
-.
+
 ├── app
+│   ├── channels
+│   │   └── application_cable
 │   ├── controllers
 │   │   └── concerns
+│   ├── jobs
 │   ├── mailers
 │   ├── models
 │   │   └── concerns
 │   └── views
 │       └── layouts
+├── bin
 ├── config
 │   ├── environments
 │   ├── initializers
 │   └── locales
 ├── db
+│   └── migrate
 ├── features
 │   ├── step_definitions
 │   └── support
 ├── lib
 │   └── tasks
+├── log
+├── public
 ├── spec
+│   ├── controllers
+│   ├── factories
+│   └── models
+├── storage
+└── vendor
+
 ```

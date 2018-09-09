@@ -1,31 +1,33 @@
-begin
-  require 'rubocop/rake_task'
+if Rails.env.test?
+  begin
+    require 'rubocop/rake_task'
 
-  RuboCop::RakeTask.new
-end
-
-begin
-  desc 'Run rails_best_practices report'
-  task :rails_best_practices do
-    sh 'rails_best_practices --features --spec'
+    RuboCop::RakeTask.new
   end
-end
 
-begin
-  require 'cucumber/rake/task'
-
-  namespace :cucumber do
-    Cucumber::Rake::Task.new(:all) do |t|
-      t.cucumber_opts = %w[--format pretty]
+  begin
+    desc 'Run rails_best_practices report'
+    task :rails_best_practices do
+      sh 'rails_best_practices --features --spec'
     end
   end
-end
 
-desc 'Run a build for continuous integration'
-task ci: [
-  'log:clear',
-  :rubocop,
-  :rails_best_practices,
-  :spec,
-  'cucumber:all'
-]
+  begin
+    require 'cucumber/rake/task'
+
+    namespace :cucumber do
+      Cucumber::Rake::Task.new(:all) do |t|
+        t.cucumber_opts = %w[--format pretty]
+      end
+    end
+  end
+
+  desc 'Run a build for continuous integration'
+  task ci: [
+    'log:clear',
+    :rubocop,
+    :rails_best_practices,
+    :spec,
+    'cucumber:all'
+  ]
+end
