@@ -40,8 +40,7 @@ class OrganizationsController < ApplicationController
   private
 
   def resource_params
-    # params.require(:name)
-    params.permit(:name, :page, :phone, :address)
+    params.permit(:name, :web_page, :phone, :address, :email, :organization_type, :logo)
   end
 
   def load

@@ -7,8 +7,11 @@ Given('there is an organization with ID {int}') do |id|
 end
 
 Then('the organization is included in the response') do
+  @organization ||= Organization.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@organization.reload.id)
   expect(parsed_response_body[:name]).to eq(@organization.name)
+  expect(parsed_response_body[:phone]).to eq(@organization.phone)
+  expect(parsed_response_body[:address]).to eq(@organization.address)
 end
 
 Then('the organization name is now {string}') do |name|
