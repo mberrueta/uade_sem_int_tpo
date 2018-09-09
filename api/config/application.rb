@@ -22,14 +22,18 @@ module Api
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
-    # Settings in config/environments/* take precedence over those specified here.
-    # Application configuration can go into files in config/initializers
-    # -- all .rb files in that directory are automatically loaded after loading
-    # the framework and any gems in your application.
-
-    # Only loads a smaller set of middleware suitable for API only apps.
-    # Middleware like session, flash, cookies can be added back manually.
-    # Skip views, helpers and assets when generating a new resource.
+    config.active_record.belongs_to_required_by_default = true
+    # config.middleware.delete ActionDispatch::Callbacks
+    #
+    # config.middleware.insert_before 0, Rack::Cors do
+    #   allow do
+    #     origins ::Muse.origins
+    #     resource '*',
+    #              headers: :any,
+    #              expose: ['access-token', 'expiry', 'token-type', 'uid', 'client', 'X-Total', 'X-Per-Page', 'X-Total-Pages', 'X-Current-Page'],
+    #              methods: [:get, :post, :options, :delete, :put]
+    #   end
+    # end
     config.api_only = true
   end
 end
