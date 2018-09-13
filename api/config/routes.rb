@@ -7,5 +7,9 @@ Rails.application.routes.draw do
     resources :courses, only: :create
   end
 
-  resources :courses, exept: :create
+  resources :courses, exept: :create do
+    resources :subjects, only: :create
+  end
+
+  resources :subjects, except: :create
 end
