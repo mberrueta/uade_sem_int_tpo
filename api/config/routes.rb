@@ -3,5 +3,9 @@ Rails.application.routes.draw do
     resources :academic_calendars, path: 'academic-calendars', only: :create
   end
 
-  resources :academic_calendars, path: 'academic-calendars', except: :create
+  resources :academic_calendars, path: 'academic-calendars', except: :create do
+    resources :courses, only: :create
+  end
+
+  resources :courses, exept: :create
 end
