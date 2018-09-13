@@ -7,12 +7,41 @@ organization1 = Organization.find_or_create_by(
   web_page: 'http://jerde.com/aleen',
   logo: 'http://christiansen.com/michel'
 )
-organization2 = Organization.find_or_create_by(
-  id: 2,
-  name: 'Ward-Collins',
-  phone: '(784) 157-5382',
-  address: 'Apt. 676 90804 Mary Lodge, Beliaberg, DE 58176-1132',
-  email: 'felton@simonis.name',
-  web_page: 'http://howe.net/damian.wiza',
-  logo: 'http://goyetteschroeder.info/lou_lind'
+
+academic_calendar = AcademicCalendar.find_or_create_by(
+  id: 1,
+  year: 2019,
+  type: 'morning',
+  organization_id: 1
+)
+
+course = Course.find_or_create_by(
+  id: 1,
+  academic_calendar_id: 1,
+  name: '1A',
+  max_students: 100
+)
+
+subject1 = Subject.find_or_create_by(
+    id: 1,
+    course_id: 1,
+    name: 'Matematicas 1A'
+)
+
+subject2 = Subject.find_or_create_by(
+    id: 2,
+    course_id: 1,
+    name: 'Literatura 1A'
+)
+
+subject3 = Subject.find_or_create_by(
+    id: 3,
+    course_id: 1,
+    name: 'Historia 1A'
+)
+
+subject4 = Subject.find_or_create_by(
+    id: 4,
+    course_id: 1,
+    name: 'Naturales 1A'
 )

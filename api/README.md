@@ -51,6 +51,18 @@ heroku run bash
 
 ```
 
+## Add new model
+
+ - add      `app/controllers/NAMEs_controller.rb`
+ - modify   `config/routes.rb`
+ - modify   `db/seeds.rb`
+ - add      `features/managing_NAMEs.feature`
+ - add      `features/step_definitions/MODEL_steps.rb`
+ - add      `spec/factories/academic_calendars.rb`
+ - add      `app/models/MODEL.rb`
+ - add	    `db/migrate/20180912224343_create_MODELs.rb`
+
+
 ## Structure
 
 ```
