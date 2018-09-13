@@ -11,5 +11,37 @@ organization1 = Organization.find_or_create_by(
 academic_calendar = AcademicCalendar.find_or_create_by(
   id: 1,
   year: 2019,
-  type: 'morning'
+  type: 'morning',
+  organization_id: 1
+)
+
+course = Course.find_or_create_by(
+  id: 1,
+  academic_calendar_id: 1,
+  name: '1A',
+  max_students: 100
+)
+
+subject1 = Subject.find_or_create_by(
+    id: 1,
+    course_id: 1,
+    name: 'Matematicas 1A'
+)
+
+subject2 = Subject.find_or_create_by(
+    id: 2,
+    course_id: 1,
+    name: 'Literatura 1A'
+)
+
+subject3 = Subject.find_or_create_by(
+    id: 3,
+    course_id: 1,
+    name: 'Historia 1A'
+)
+
+subject4 = Subject.find_or_create_by(
+    id: 4,
+    course_id: 1,
+    name: 'Naturales 1A'
 )
