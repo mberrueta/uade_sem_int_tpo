@@ -11,7 +11,7 @@ organization1 = Organization.find_or_create_by(
 academic_calendar = AcademicCalendar.find_or_create_by(
   id: 1,
   year: 2019,
-  type: 'morning',
+  calendar_type: 'morning',
   organization_id: 1
 )
 
