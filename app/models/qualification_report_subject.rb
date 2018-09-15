@@ -1,0 +1,4 @@
+class QualificationReportSubject < ApplicationRecord
+
+
+end

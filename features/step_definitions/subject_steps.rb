@@ -2,7 +2,7 @@ Then('the subject has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an subject with ID {int}') do |id|
+Given('there is a subject with ID {string}') do |id|
   @subject = create(:subject, id: id)
 end
 

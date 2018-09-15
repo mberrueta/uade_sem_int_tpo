@@ -2,7 +2,7 @@ Then('the course has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an course with ID {int}') do |id|
+Given('there is an course with ID {string}') do |id|
   @course = create(:course, id: id)
 end
 

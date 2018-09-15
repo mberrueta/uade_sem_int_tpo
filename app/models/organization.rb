@@ -4,6 +4,10 @@ class Organization < ApplicationRecord
   validates :name, :phone, :address, presence: true
   validate :correct_type?
 
+  has_many :academic_calendars, inverse_of: :organization, dependent: :destroy
+  has_many :news
+  has_many :people
+
   before_validation :set_default_type
 
   private

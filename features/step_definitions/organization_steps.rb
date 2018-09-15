@@ -2,7 +2,7 @@ Then('the organization has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an organization with ID {int}') do |id|
+Given('there is an organization with ID {string}') do |id|
   @organization = create(:organization, id: id)
 end
 

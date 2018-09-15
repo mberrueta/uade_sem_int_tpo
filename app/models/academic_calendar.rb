@@ -4,6 +4,7 @@ class AcademicCalendar < ApplicationRecord
   validates :year, :calendar_type, presence: true
 
   belongs_to :organization
+  has_many :courses, dependent: :destroy
 
   before_validation :set_defaults
 
