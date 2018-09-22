@@ -22,26 +22,122 @@ course = Course.find_or_create_by(
   max_students: 100
 )
 
-subject1 = Subject.find_or_create_by(
+subject = Subject.find_or_create_by(
     id: 'd54cd933-1f04-420a-b0d3-2970ac5e1c6c',
-    course_id: course.id,
+    course: course,
     name: 'Matematicas 1A'
 )
 
-subject2 = Subject.find_or_create_by(
+Subject.find_or_create_by(
     id: 'db697d7e-6631-4f99-aac4-3d5f6817e12f',
-    course_id: course.id,
+    course: course,
     name: 'Literatura 1A'
 )
 
-subject3 = Subject.find_or_create_by(
+Subject.find_or_create_by(
     id: '95fc0e20-5d9e-4585-b12b-e6b73f0d5004',
-    course_id: course.id,
+    course: course,
     name: 'Historia 1A'
 )
 
-subject4 = Subject.find_or_create_by(
+Subject.find_or_create_by(
     id: 'd26acd74-c7f8-4df2-958a-1f2f48917361',
-    course_id: course.id,
+    course: course,
     name: 'Naturales 1A'
 )
+
+student = Student.find_or_create_by(
+  id: "53d47de0-5b38-4b19-8e78-436c5ac6693e",
+  first_name: "Logan",
+  last_name: "Carroll",
+  phone: "(385) 091-6611",
+  address: "Apt. 324 6592 Schneider Camp, West Santofurt, TN 61450",
+  email: "trulapagac@walter.io",
+  gender: :male,
+  picture_url: nil,
+  organization: organization1
+)
+ Student.find_or_create_by(
+  id: "2b3186c3-83f7-4499-a312-e0789a0b7b10",
+  first_name: "Latrina",
+  last_name: "Kerluke",
+  phone: "(203) 973-4658",
+  address: "Apt. 455 6748 Phillip Ports, Port Porfiriofort, VA 88130",
+  email: "soniaheller@feilcronin.co",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1
+)
+Student.find_or_create_by(
+    id: "37dc0193-1f85-4b0e-919f-0276b108049f",
+  first_name: "Rosita",
+  last_name: "Wunsch",
+  phone: "1-531-586-9541 x31588",
+  address: "401 Daniel Haven, North Dexterton, MN 66583-4606",
+  email: "elaynemetz@grimes.name",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1
+)
+
+program = Program.find_or_create_by(
+  id: "8ce7e4ae-606f-4a9f-ac06-d215c3cefb52",
+  subject: subject,
+  day: 'Wed, 08 May 2019',
+  done: false,
+  class_number: 1
+)
+
+Topic.find_or_create_by(
+  id: "f358567b-7f87-4839-a960-2dcef94554b0",
+  program: program,
+  title: "Marcos Sanford II",
+  description: nil
+)
+
+exam = Exam.find_or_create_by(
+  id: "05107a51-85ec-42ed-8a76-cd7f89dc2447",
+  title: "Ming Murphy",
+  subject: subject
+)
+
+Exam.find_or_create_by(
+  id: "d9693e26-d248-49fb-85dd-e2af68aa7bf2",
+  title: "Mike Hammes",
+  subject: subject
+)
+
+Exam.find_or_create_by(
+  id: "cfdd960d-c313-4bc6-96a0-d4e583f79f74",
+  title: "Carmelo Conroy",
+  subject: subject
+)
+
+ExamQuestion.find_or_create_by(
+  id: "4d770bfb-b81a-49f0-8be6-bb5d47982f0b",
+  exam: exam,
+  question: "Lowell Stroman",
+).tap do |eq|
+    eq.options = ["Isiah Torphy", "Deon Bartoletti", "Talisha Koch", "Stanton Gusikowski"]
+    eq.save!
+end
+
+
+ExamQuestion.find_or_create_by(
+  id: "f22214c2-4387-43d5-a73b-81ad6e3425b3",
+  exam: exam,
+  question: "Cristopher Upton",
+).tap do |eq|
+    eq.options = ["Ayako Hoeger", "Leo Doyle Jr.", "Dee Brakus", "Elisha Lang"]
+    eq.save!
+end
+
+
+ExamQuestion.find_or_create_by(
+  id: "4b6bff54-9be2-450a-9436-20147dbffc31",
+  exam: exam,
+  question: "Miss Tijuana Schaefer",
+).tap do |eq|
+    eq.options = ["Delilah Leffler", "Floyd Lakin", "Caron Carter", "Modesto Hackett Jr."]
+    eq.save!
+  end

@@ -50,7 +50,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.uuid "exam_id"
     t.string "question"
     t.json "options", default: {}
-    t.string "correct_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exam_id"], name: "index_exam_questions_on_exam_id"
@@ -102,7 +101,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.string "phone"
     t.string "address"
     t.string "email"
-    t.boolean "gender"
+    t.string "gender"
     t.string "picture_url"
     t.uuid "organization_id"
     t.string "type", null: false

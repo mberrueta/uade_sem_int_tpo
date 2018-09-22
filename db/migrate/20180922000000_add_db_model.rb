@@ -43,7 +43,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
       t.string :phone, required: true
       t.string :address, required: true
       t.string :email
-      t.boolean :gender
+      t.string :gender
       t.string :picture_url
       t.uuid :organization_id, index: true
       t.string :type, null: false
