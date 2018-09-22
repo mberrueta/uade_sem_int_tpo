@@ -2,7 +2,7 @@ Then('the academic calendar has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an academic calendar with ID {int}') do |id|
+Given('there is an academic calendar with ID {string}') do |id|
   @academic_calendar = create(:academic_calendar, id: id)
 end
 

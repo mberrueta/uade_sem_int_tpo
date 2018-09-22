@@ -2,6 +2,8 @@ class Course < ApplicationRecord
   validates :name, :max_students, presence: true
 
   belongs_to :academic_calendar
+  has_many :subjects, dependent: :destroy
+  has_many :assists, dependent: :destroy
 
   before_validation :set_defaults
 

@@ -17,7 +17,7 @@ if Rails.env.test?
 
     namespace :cucumber do
       Cucumber::Rake::Task.new(:all) do |t|
-        t.cucumber_opts = %w[--format pretty]
+        t.cucumber_opts = %w[--format progress]
       end
     end
   end
