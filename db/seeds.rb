@@ -106,6 +106,42 @@ Parent.find_or_create_by(
   student_ids: %w(37dc0193-1f85-4b0e-919f-0276b108049f)
 )
 
+Teacher.find_or_create_by(
+  id: "2200ba65-4679-4cf1-a7a0-2506d79ca64d",
+  first_name: "Wallace",
+  last_name: "Kris",
+  phone: "(291) 189-0307 x854",
+  address: "Apt. 986 341 Valentin Points, South Marianneshire, MD 49411",
+  email: "gudy@bashirian.co",
+  gender: :male,
+  picture_url: nil,
+  organization: organization1
+)
+
+Teacher.find_or_create_by(
+  id: "e558b184-b7ce-4427-9e72-bbf7f60b532f",
+  first_name: "Maggio",
+  last_name: "Spencer",
+  phone: "1-211-606-6549",
+  address: "uite 764 492 Tristan Mountains, McKenzieville, KS 43207",
+  email: "antoniowiegand@lemke.name",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1
+)
+
+Teacher.find_or_create_by(
+  id: "5d39a2c6-9c5e-4f18-8f40-078fd22ab510",
+  first_name: "Fletcher",
+  last_name: "Donnelly",
+  phone: "633.154.0789 x8198",
+  address: "Apt. 584 48460 Rutherford Row, Robinborough, ID 17612",
+  email: "jeffreypouros@will.net",
+  gender: :male,
+  picture_url: nil,
+  organization: organization1
+)
+
 program = Program.find_or_create_by(
   id: "8ce7e4ae-606f-4a9f-ac06-d215c3cefb52",
   subject: subject,

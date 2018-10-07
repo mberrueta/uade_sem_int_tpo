@@ -13,5 +13,11 @@ FactoryBot.define do
 
     factory :parent, class: Parent do
     end
+
+    factory :teacher, class: Teacher do
+    end
+
+    factory :manager, class: Manager do
+    end
   end
 end
