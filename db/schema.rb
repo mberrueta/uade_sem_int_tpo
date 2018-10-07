@@ -89,12 +89,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "parents", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "student_id"
-    t.uuid "person_id"
-    t.index ["person_id", "student_id"], name: "index_parents_on_person_id_and_student_id"
-  end
-
   create_table "people", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
@@ -103,8 +97,9 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.string "email"
     t.string "gender"
     t.string "picture_url"
-    t.uuid "organization_id"
     t.string "type", null: false
+    t.string "student_ids", default: [], array: true
+    t.uuid "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_people_on_organization_id"
@@ -192,8 +187,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "exam_questions", "exams"
   add_foreign_key "exams", "subjects"
   add_foreign_key "news", "organizations"
-  add_foreign_key "parents", "people"
-  add_foreign_key "parents", "people", column: "student_id"
   add_foreign_key "people", "organizations"
   add_foreign_key "programs", "subjects"
   add_foreign_key "qualification_report_subjects", "qualification_reports"

@@ -57,7 +57,7 @@ student = Student.find_or_create_by(
   picture_url: nil,
   organization: organization1
 )
- Student.find_or_create_by(
+Student.find_or_create_by(
   id: "2b3186c3-83f7-4499-a312-e0789a0b7b10",
   first_name: "Latrina",
   last_name: "Kerluke",
@@ -78,6 +78,32 @@ Student.find_or_create_by(
   gender: :female,
   picture_url: nil,
   organization: organization1
+)
+
+Parent.find_or_create_by(
+  id: "0140a3b0-cfdd-4239-9460-9d03ccc10679",
+  first_name: "Smitham",
+  last_name: "Friesen",
+  phone: "325-905-6397",
+  address: "Apt. 611 1464 Donnell Tunnel, East Cecilburgh, MI 26408",
+  email: "gabrielelangosh@farrell.org",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1,
+  student_ids: %w(53d47de0-5b38-4b19-8e78-436c5ac6693e 2b3186c3-83f7-4499-a312-e0789a0b7b10)
+)
+
+Parent.find_or_create_by(
+  id: "3110c6ca-1d92-4edd-a6fa-f12d93181663",
+  first_name: "Mohamed",
+  last_name: "Spencer",
+  phone: "164.887.4187",
+  address: "9225 Treutel Ford, South Tara, IA 02245",
+  email: "gudy@bashirian.co",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1,
+  student_ids: %w(37dc0193-1f85-4b0e-919f-0276b108049f)
 )
 
 program = Program.find_or_create_by(

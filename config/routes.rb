@@ -4,7 +4,11 @@ Rails.application.routes.draw do
     resources :students, only: :create
   end
 
-  resources :students, exept: :create
+  resources :students, exept: :create do
+    resources :parents, only: :create
+  end
+
+  resources :parents, exept: :create
 
   resources :academic_calendars, path: 'academic-calendars', except: :create do
     resources :courses, only: :create

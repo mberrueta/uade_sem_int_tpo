@@ -45,19 +45,13 @@ class AddDbModel < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :gender
       t.string :picture_url
+      t.string :type
+      t.string :student_ids, array: true, default: []
       t.uuid :organization_id, index: true
       t.string :type, null: false
       t.timestamps
     end
     add_foreign_key :people, :organizations
-
-    create_table :parents, id: :uuid  do |t|
-      t.uuid :student_id
-      t.uuid :person_id
-    end
-    add_foreign_key :parents, :people
-    add_foreign_key :parents, :people, column: :student_id
-    add_index :parents, [:person_id, :student_id]
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true

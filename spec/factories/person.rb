@@ -10,5 +10,8 @@ FactoryBot.define do
 
     factory :student, class: Student do
     end
+
+    factory :parent, class: Parent do
+    end
   end
 end
