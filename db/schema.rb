@@ -113,8 +113,11 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "programs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "subject_id"
     t.date "day"
-    t.boolean "done"
+    t.boolean "done", default: false
     t.integer "class_number"
+    t.string "title"
+    t.string "description"
+    t.string "picture_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["subject_id"], name: "index_programs_on_subject_id"
@@ -171,9 +174,14 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "course_id"
     t.string "name"
+    t.string "code"
+    t.string "day"
+    t.string "hour"
+    t.uuid "teacher_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["course_id"], name: "index_subjects_on_course_id"
+    t.index ["teacher_id"], name: "index_subjects_on_teacher_id"
   end
 
   create_table "topics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -204,5 +212,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "student_exams", "exams"
   add_foreign_key "student_exams", "people", column: "student_id"
   add_foreign_key "subjects", "courses"
+  add_foreign_key "subjects", "people", column: "teacher_id"
   add_foreign_key "topics", "programs"
 end

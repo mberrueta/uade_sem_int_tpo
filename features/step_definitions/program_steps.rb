@@ -4,7 +4,8 @@ Then('the program has been created') do
 end
 
 Given('there is a program with ID {string}') do |id|
-  @program = create(:program, id: id)
+  @subject ||= create(:subject)
+  @program = create(:program, id: id, subject: @subject)
 end
 
 Then('the program is included in the response') do

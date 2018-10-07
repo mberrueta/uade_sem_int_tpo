@@ -11,7 +11,11 @@ Rails.application.routes.draw do
   end
 
   resources :parents, exept: :create
-  resources :teachers, exept: :create
+
+  resources :teachers, exept: :create do
+    resources :subjects, only: :index
+  end
+
   resources :managers, exept: :create do
     resources :courses, only: :index
   end

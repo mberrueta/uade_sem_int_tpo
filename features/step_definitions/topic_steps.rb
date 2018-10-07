@@ -1,10 +1,10 @@
-
 Then('the topic has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an topic with ID {string}') do |id|
-  @topic = create(:topic, id: id)
+Given('there is a topic with ID {string}') do |id|
+  @program ||= create(:program)
+  @topic = create(:topic, id: id, program: @program)
 end
 
 Then('the topic is included in the response') do

@@ -30,6 +30,7 @@ Feature: Managing teachers
 
   Scenario: Viewing single teacher
     Given there is a 'teacher' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
+    And there is a subject with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
     When I request GET /teachers/ccc54dc3-32a3-49e7-85e9-929038387529
     Then I get a 200 response
     And the 'teacher' is included in the response

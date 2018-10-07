@@ -3,7 +3,8 @@ Then('the subject has been created') do
 end
 
 Given('there is a subject with ID {string}') do |id|
-  @subject = create(:subject, id: id)
+  @teacher ||= create(:teacher)
+  @subject = create(:subject, id: id, teacher: @teacher)
 end
 
 Then('the subject is included in the response') do
@@ -22,4 +23,8 @@ end
 
 Then('the subject was removed') do
   expect(Subject.find_by(id: @subject.id)).to be_nil
+end
+
+Then('the subject with ID {string} is included in the response') do |id|
+  expect(parsed_response_body.map { |subject| subject[:id] }).to include(id)
 end

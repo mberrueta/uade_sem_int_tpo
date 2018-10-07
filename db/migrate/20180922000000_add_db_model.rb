@@ -36,6 +36,10 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     create_table :subjects, id: :uuid  do |t|
       t.uuid :course_id, index: true
       t.string :name, required: true
+      t.string :code, required: true
+      t.string :day
+      t.string :hour
+      t.uuid :teacher_id, index: true
       t.timestamps
     end
     add_foreign_key :subjects, :courses
@@ -58,6 +62,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :people, :organizations
     add_foreign_key :people, :courses
     add_foreign_key :courses, :people, column: :manager_id
+    add_foreign_key :subjects, :people, column: :teacher_id
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true
@@ -143,8 +148,11 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     create_table :programs, id: :uuid  do |t|
       t.uuid :subject_id, index: true
       t.date :day
-      t.boolean :done
+      t.boolean :done, default: false
       t.integer :class_number
+      t.string :title
+      t.string :description
+      t.string :picture_url
       t.timestamps
     end
     add_foreign_key :programs, :subjects

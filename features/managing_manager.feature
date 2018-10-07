@@ -30,7 +30,7 @@ Feature: Managing managers
 
   Scenario: Viewing single manager
     Given there is a 'manager' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
-    And there is an course with ID "a652a7f8-d519-4696-96a2-b7f084c3e106"
+    And there is a course with ID "a652a7f8-d519-4696-96a2-b7f084c3e106"
     And the course have 20 students
     And the course have 10 subjects
     When I request GET /managers/ccc54dc3-32a3-49e7-85e9-929038387529

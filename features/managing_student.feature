@@ -6,6 +6,7 @@ Feature: Managing students
 
   Scenario: Creating a student with minimum required attributes
     Given there is an organization with ID '98be7273-d048-4a0f-8ff8-e48be23da253'
+    And there is a course with ID '5dc40366-44fb-4af7-b851-f1cff11c811e'
     When I request POST organizations/98be7273-d048-4a0f-8ff8-e48be23da253/students with the payload:
       """
       {
@@ -14,7 +15,8 @@ Feature: Managing students
           "phone": "123-45677",
           "email": "pp.argento@gmail.com",
           "address": "Somewhere 123, BsAs",
-          "gender": "male"
+          "gender": "male",
+          "course_id": "5dc40366-44fb-4af7-b851-f1cff11c811e"
       }
       """
     Then I get a 200 response

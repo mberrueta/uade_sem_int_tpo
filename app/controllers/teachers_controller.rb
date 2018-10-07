@@ -1,13 +1,14 @@
 class TeachersController < ApplicationController
+  before_action :load_list, only: :index
   before_action :load_organization, only: :create
   before_action :load, only: [:show, :update, :destroy]
 
   def index
-    render json: Teacher.all
+    render json: @teachers
   end
 
   def show
-    render json: @teacher
+    render json: @teacher, serializer: ::TeacherSerializer
   end
 
   def create
@@ -47,5 +48,10 @@ class TeachersController < ApplicationController
 
   def load
     @teacher = Teacher.find_by(id: params[:id])
+  end
+
+  def load_list
+    @teachers = Teacher.where(organization_id: params[:organization_id]) if params[:organization_id]
+    @teachers ||= Teacher.all
   end
 end
