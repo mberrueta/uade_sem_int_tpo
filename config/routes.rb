@@ -12,7 +12,9 @@ Rails.application.routes.draw do
 
   resources :parents, exept: :create
   resources :teachers, exept: :create
-  resources :managers, exept: :create
+  resources :managers, exept: :create do
+    resources :courses, only: :index
+  end
 
   resources :academic_calendars, path: 'academic-calendars', except: :create do
     resources :courses, only: :create

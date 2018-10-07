@@ -7,7 +7,7 @@ class ManagersController < ApplicationController
   end
 
   def show
-    render json: @manager
+    render json: @manager, serializer: ::ManagerSerializer
   end
 
   def create

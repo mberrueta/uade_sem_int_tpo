@@ -1,4 +1,3 @@
-
 Then('the {string} has been created') do |_type|
   expect(parsed_response_body[:id]).not_to be_nil
 end
@@ -30,4 +29,20 @@ Then('the {string} was removed') do |type|
   expect(Person.find_by(id: instance_variable_get("@#{type}").id)).to be_nil
 end
 
+Then('the manager courses are included in the response') do
+  expect(parsed_response_body[:courses]).not_to be_nil
+  parsed_response_body[:courses].each do |course|
+    expect(course[:classroom]).not_to be_nil
+    expect(course[:shift]).not_to be_nil
+    expect(course[:subjects_count]).to be >= 0
+    expect(course[:students_count]).to be >= 0
+  end
+end
 
+Then('the manager first course response students count is {int}') do |count|
+  expect(parsed_response_body[:courses].first[:students_count]).to eq(count)
+end
+
+Then('the manager first course response subjects count is {int}') do |count|
+  expect(parsed_response_body[:courses].first[:subjects_count]).to eq(count)
+end

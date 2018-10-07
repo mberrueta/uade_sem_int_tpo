@@ -3,7 +3,8 @@ Then('the course has been created') do
 end
 
 Given('there is an course with ID {string}') do |id|
-  @course = create(:course, id: id)
+  @manager ||= create(:manager)
+  @course = create(:course, id: id, manager: @manager)
 end
 
 Then('the course is included in the response') do
@@ -23,4 +24,16 @@ end
 
 Then('the course was removed') do
   expect(Course.find_by(id: @course.id)).to be_nil
+end
+
+Given('the course have {int} students') do |count|
+  create_list(:student, count, course: @course)
+end
+
+Given('the course have {int} subjects') do |count|
+  create_list(:subject, count, course: @course)
+end
+
+Then('the course with ID {string} is included in the response') do |id|
+  expect(parsed_response_body.map { |course| course[:id] }).to include(id)
 end

@@ -24,8 +24,11 @@ class AddDbModel < ActiveRecord::Migration[5.2]
 
     create_table :courses, id: :uuid  do |t|
       t.uuid :academic_calendar_id, index: true
+      t.uuid :manager_id, index: true
       t.integer :max_students, required: true
       t.string :name, required: true
+      t.string :classroom
+      t.string :shift
       t.timestamps
     end
     add_foreign_key :courses, :academic_calendars
@@ -47,11 +50,14 @@ class AddDbModel < ActiveRecord::Migration[5.2]
       t.string :picture_url
       t.string :type
       t.string :student_ids, array: true, default: []
+      t.uuid :course_id
       t.uuid :organization_id, index: true
       t.string :type, null: false
       t.timestamps
     end
     add_foreign_key :people, :organizations
+    add_foreign_key :people, :courses
+    add_foreign_key :courses, :people, column: :manager_id
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true

@@ -39,11 +39,15 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "academic_calendar_id"
+    t.uuid "manager_id"
     t.integer "max_students"
     t.string "name"
+    t.string "classroom"
+    t.string "shift"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["academic_calendar_id"], name: "index_courses_on_academic_calendar_id"
+    t.index ["manager_id"], name: "index_courses_on_manager_id"
   end
 
   create_table "exam_questions", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -99,6 +103,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.string "picture_url"
     t.string "type", null: false
     t.string "student_ids", default: [], array: true
+    t.uuid "course_id"
     t.uuid "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -184,9 +189,11 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "assists", "courses"
   add_foreign_key "assists", "people", column: "student_id"
   add_foreign_key "courses", "academic_calendars"
+  add_foreign_key "courses", "people", column: "manager_id"
   add_foreign_key "exam_questions", "exams"
   add_foreign_key "exams", "subjects"
   add_foreign_key "news", "organizations"
+  add_foreign_key "people", "courses"
   add_foreign_key "people", "organizations"
   add_foreign_key "programs", "subjects"
   add_foreign_key "qualification_report_subjects", "qualification_reports"
