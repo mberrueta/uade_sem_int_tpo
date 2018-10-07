@@ -5,7 +5,7 @@ Feature: Managing subjects
   I should be able to create, edit, view or delete the subjects from my organization
 
   Scenario: Creating a subject with minimum required attributes
-    Given there is an course with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
+    Given there is a course with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
     When I request POST courses/dc1750e0-968d-44dc-b131-4fd3fc3f7233/subjects with the payload:
       """
       {
@@ -23,8 +23,20 @@ Feature: Managing subjects
     Then I get a 200 response
     And there are 2 subjects in the response
 
+  Scenario: Listing subjects by teacher
+    Given there is a subject with ID '03818d84-75fc-40d0-aa74-343c35fce55e'
+    And there is a 'teacher' with ID 'd9cf7a8f-ebdf-4ce5-861e-a54a1c674e25'
+    And there is a subject with ID '452de058-a5bb-4976-89e8-f3150cb59c24'
+    When I request GET /teachers/d9cf7a8f-ebdf-4ce5-861e-a54a1c674e25/subjects
+    Then I get a 200 response
+    And there are 1 subjects in the response
+    And the subject with ID "452de058-a5bb-4976-89e8-f3150cb59c24" is included in the response
+
   Scenario: Viewing single subject
     Given there is a subject with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
+    And there is a program with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
+    And there is a topic with ID "0d11ec5c-4004-4f7e-aa51-9e3e36e8862b"
+    And there is a topic with ID "6140de1d-db63-47de-9a0f-80a79b11ed51"
     When I request GET /subjects/76ff8ffc-e643-443d-aa87-9ec344317f65
     Then I get a 200 response
     And the subject is included in the response

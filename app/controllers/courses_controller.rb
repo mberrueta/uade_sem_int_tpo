@@ -1,9 +1,10 @@
 class CoursesController < ApplicationController
+  before_action :load_list, only: :index
   before_action :load_academic_calendar, only: :create
   before_action :load, only: [:show, :update, :destroy]
 
   def index
-    render json: Course.all
+    render json: @courses
   end
 
   def show
@@ -51,5 +52,10 @@ class CoursesController < ApplicationController
 
   def load_academic_calendar
     @academic_calendar = AcademicCalendar.find_by(id: params[:academic_calendar_id])
+  end
+
+  def load_list
+    @courses = Course.where(manager_id: params[:manager_id]) if params[:manager_id]
+    @courses ||= Course.all
   end
 end

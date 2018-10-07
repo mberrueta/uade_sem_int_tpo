@@ -1,13 +1,14 @@
 class SubjectsController < ApplicationController
+  before_action :load_list, only: :index
   before_action :load_course, only: :create
   before_action :load, only: [:show, :update, :destroy]
 
   def index
-    render json: Subject.all
+    render json: @subjects
   end
 
   def show
-    render json: @subject
+    render json: @subject, serializer: ::SubjectSerializer
   end
 
   def create
@@ -51,5 +52,10 @@ class SubjectsController < ApplicationController
 
   def load_course
     @course = Course.find_by(id: params[:course_id])
+  end
+
+  def load_list
+    @subjects = Subject.where(teacher_id: params[:teacher_id]) if params[:teacher_id]
+    @subjects ||= Subject.all
   end
 end

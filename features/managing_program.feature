@@ -26,6 +26,8 @@ Feature: Managing programs
 
   Scenario: Viewing single program
     Given there is a program with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
+    And there is a topic with ID "90555acb-abe1-4429-8203-661b2c66bce1"
+    And there is a topic with ID "2db21b3a-a434-428f-bac9-1d673a4c01d7"
     When I request GET /programs/76ff8ffc-e643-443d-aa87-9ec344317f65
     Then I get a 200 response
     And the program is included in the response

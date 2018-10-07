@@ -6,6 +6,8 @@ class Program < ApplicationRecord
   has_many :topics, dependent: :destroy
   belongs_to :subject
 
+  delegate :count, to: :topics, prefix: true
+
   private
 
   def assign_class_number

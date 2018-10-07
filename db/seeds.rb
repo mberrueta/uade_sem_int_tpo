@@ -57,7 +57,7 @@ student = Student.find_or_create_by(
   picture_url: nil,
   organization: organization1
 )
- Student.find_or_create_by(
+Student.find_or_create_by(
   id: "2b3186c3-83f7-4499-a312-e0789a0b7b10",
   first_name: "Latrina",
   last_name: "Kerluke",
@@ -80,18 +80,130 @@ Student.find_or_create_by(
   organization: organization1
 )
 
+Parent.find_or_create_by(
+  id: "0140a3b0-cfdd-4239-9460-9d03ccc10679",
+  first_name: "Smitham",
+  last_name: "Friesen",
+  phone: "325-905-6397",
+  address: "Apt. 611 1464 Donnell Tunnel, East Cecilburgh, MI 26408",
+  email: "gabrielelangosh@farrell.org",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1,
+  student_ids: %w(53d47de0-5b38-4b19-8e78-436c5ac6693e 2b3186c3-83f7-4499-a312-e0789a0b7b10)
+)
+
+Parent.find_or_create_by(
+  id: "3110c6ca-1d92-4edd-a6fa-f12d93181663",
+  first_name: "Mohamed",
+  last_name: "Spencer",
+  phone: "164.887.4187",
+  address: "9225 Treutel Ford, South Tara, IA 02245",
+  email: "gudy@bashirian.co",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1,
+  student_ids: %w(37dc0193-1f85-4b0e-919f-0276b108049f)
+)
+
+Teacher.find_or_create_by(
+  id: "2200ba65-4679-4cf1-a7a0-2506d79ca64d",
+  first_name: "Wallace",
+  last_name: "Kris",
+  phone: "(291) 189-0307 x854",
+  address: "Apt. 986 341 Valentin Points, South Marianneshire, MD 49411",
+  email: "gudy@bashirian.co",
+  gender: :male,
+  picture_url: nil,
+  organization: organization1
+)
+
+Teacher.find_or_create_by(
+  id: "e558b184-b7ce-4427-9e72-bbf7f60b532f",
+  first_name: "Maggio",
+  last_name: "Spencer",
+  phone: "1-211-606-6549",
+  address: "uite 764 492 Tristan Mountains, McKenzieville, KS 43207",
+  email: "antoniowiegand@lemke.name",
+  gender: :female,
+  picture_url: nil,
+  organization: organization1
+)
+
+Teacher.find_or_create_by(
+  id: "5d39a2c6-9c5e-4f18-8f40-078fd22ab510",
+  first_name: "Fletcher",
+  last_name: "Donnelly",
+  phone: "633.154.0789 x8198",
+  address: "Apt. 584 48460 Rutherford Row, Robinborough, ID 17612",
+  email: "jeffreypouros@will.net",
+  gender: :male,
+  picture_url: nil,
+  organization: organization1
+)
+
 program = Program.find_or_create_by(
-  id: "8ce7e4ae-606f-4a9f-ac06-d215c3cefb52",
+  id: "67e5f2be-af30-4f4d-b709-77b83656d0c7",
   subject: subject,
   day: 'Wed, 08 May 2019',
   done: false,
+  title: 'Inicio de la primer guerra mundial',
+  description: '',
+  picture_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrXY3vnXt16WGcCgDmhzVTHlZUKcQz_q6C2pcnuaEH64et74yI',
   class_number: 1
 )
 
+Program.find_or_create_by(
+  id: "ea2ba1c4-7d3a-4197-97dd-38b3c6d2452f",
+  subject: subject,
+  day: 'Wed, 12 May 2019',
+  done: false,
+  title: 'Fases de la primer guerra mundial',
+  description: '',
+  picture_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRdmKhOXBRnXmULrhjDB7I-RNfQJapafmuYOJeybwZb9wLAaVvuIQ',
+  class_number: 2
+)
+
+Program.find_or_create_by(
+  id: "05102142-cc75-467f-9fbf-c35a8f891654",
+  subject: subject,
+  day: 'Wed, 15 May 2019',
+  done: false,
+  title: 'Fin de la primer guerra mundial',
+  description: '',
+  picture_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQR-_WSg7RaReCbOo5zkiUrRzymuz6jSEXoUlGiqNo-IQ4P_8PloA',
+  class_number: 3
+)
+
+Program.find_or_create_by(
+  id: "81d5c87d-4bd8-458b-a319-08364ba3c001",
+  subject: subject,
+  day: 'Wed, 15 May 2019',
+  done: false,
+  title: 'Consecuencias de la primer guerra mundial',
+  description: '',
+  picture_url: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSrAheM4tolDp2bCeTh-E_p94JWqKVG4aMvYYpFu1uXtvW4Ee88mg',
+  class_number: 3
+)
+
 Topic.find_or_create_by(
-  id: "f358567b-7f87-4839-a960-2dcef94554b0",
+  id: "59bb41e8-cea7-4ef6-bf82-c058e21b9524",
   program: program,
-  title: "Marcos Sanford II",
+  title: "Causas de la Primera Guerra Mundial",
+  description: nil
+)
+
+Topic.find_or_create_by(
+  id: "d7684532-f488-44cc-9b00-258f41b9cc3d",
+  program: program,
+  title: "El inicio de la gran guerra",
+  description: nil
+)
+
+Topic.find_or_create_by(
+  id: "1dd29f65-1e8a-4554-95fb-ca5430399641",
+  program: program,
+  title: "Desarrollo de la guerra",
   description: nil
 )
 

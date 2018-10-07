@@ -24,8 +24,11 @@ class AddDbModel < ActiveRecord::Migration[5.2]
 
     create_table :courses, id: :uuid  do |t|
       t.uuid :academic_calendar_id, index: true
+      t.uuid :manager_id, index: true
       t.integer :max_students, required: true
       t.string :name, required: true
+      t.string :classroom
+      t.string :shift
       t.timestamps
     end
     add_foreign_key :courses, :academic_calendars
@@ -33,6 +36,10 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     create_table :subjects, id: :uuid  do |t|
       t.uuid :course_id, index: true
       t.string :name, required: true
+      t.string :code, required: true
+      t.string :day
+      t.string :hour
+      t.uuid :teacher_id, index: true
       t.timestamps
     end
     add_foreign_key :subjects, :courses
@@ -45,19 +52,17 @@ class AddDbModel < ActiveRecord::Migration[5.2]
       t.string :email
       t.string :gender
       t.string :picture_url
+      t.string :type
+      t.string :student_ids, array: true, default: []
+      t.uuid :course_id
       t.uuid :organization_id, index: true
       t.string :type, null: false
       t.timestamps
     end
     add_foreign_key :people, :organizations
-
-    create_table :parents, id: :uuid  do |t|
-      t.uuid :student_id
-      t.uuid :person_id
-    end
-    add_foreign_key :parents, :people
-    add_foreign_key :parents, :people, column: :student_id
-    add_index :parents, [:person_id, :student_id]
+    add_foreign_key :people, :courses
+    add_foreign_key :courses, :people, column: :manager_id
+    add_foreign_key :subjects, :people, column: :teacher_id
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true
@@ -143,8 +148,11 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     create_table :programs, id: :uuid  do |t|
       t.uuid :subject_id, index: true
       t.date :day
-      t.boolean :done
+      t.boolean :done, default: false
       t.integer :class_number
+      t.string :title
+      t.string :description
+      t.string :picture_url
       t.timestamps
     end
     add_foreign_key :programs, :subjects
