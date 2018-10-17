@@ -3,7 +3,7 @@ Then('the news has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an news with ID {int}') do |id|
+Given('there is an news with ID {string}') do |id|
   @news = create(:news, id: id)
 end
 

@@ -3,7 +3,7 @@ Then('the student_answer has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is a student_answer with ID {int}') do |id|
+Given('there is a student_answer with ID {string}') do |id|
   @student_answer = create(:student_answer, id: id)
 end
 

@@ -3,8 +3,13 @@ Then('the qualification_report_subject has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an qualification_report_subject with ID {int}') do |id|
-  @qualification_report_subject = create(:qualification_report_subject, id: id)
+Given('there is an qualification_report_subject with ID {string}') do |id|
+  @qualification_report ||= create(:qualification_report)
+  @subject ||= create(:subject)
+  @qualification_report_subject = create(:qualification_report_subject,
+                                         id: id,
+                                         qualification_report: @qualification_report,
+                                         subject: @subject)
 end
 
 Then('the qualification_report_subject is included in the response') do

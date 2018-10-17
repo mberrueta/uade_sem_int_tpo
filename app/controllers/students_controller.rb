@@ -7,7 +7,7 @@ class StudentsController < ApplicationController
   end
 
   def show
-    render json: @student
+    render json: @student, include: [:course, qualification_report: { qualification_report_subjects: :subject }]
   end
 
   def create
