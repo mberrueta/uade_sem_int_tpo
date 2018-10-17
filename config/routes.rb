@@ -25,7 +25,7 @@ Rails.application.routes.draw do
   end
 
   resources :courses, exept: :create do
-    resources :subjects, only: :create
+    resources :subjects, only: [:create, :index]
   end
 
   resources :subjects, except: :create do

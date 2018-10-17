@@ -4,7 +4,8 @@ end
 
 Given('there is a subject with ID {string}') do |id|
   @teacher ||= create(:teacher)
-  @subject = create(:subject, id: id, teacher: @teacher)
+  @course ||= create(:course)
+  @subject = create(:subject, id: id, teacher: @teacher, course: @course)
 end
 
 Then('the subject is included in the response') do

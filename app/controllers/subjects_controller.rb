@@ -56,6 +56,7 @@ class SubjectsController < ApplicationController
 
   def load_list
     @subjects = Subject.where(teacher_id: params[:teacher_id]) if params[:teacher_id]
+    @subjects = Subject.where(course_id: params[:course_id]) if params[:course_id]
     @subjects ||= Subject.all
   end
 end

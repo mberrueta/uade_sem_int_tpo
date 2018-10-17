@@ -35,6 +35,7 @@ Feature: Managing students
     When I request GET /students/ccc54dc3-32a3-49e7-85e9-929038387529
     Then I get a 200 response
     And the 'student' is included in the response
+    And the student course is included in the response
 
   Scenario: Updating student
     Given there is a 'student' with ID 'be161390-e18e-4d39-ab59-a9e8c2aea0c7'
