@@ -35,5 +35,5 @@ Given('the course have {int} subjects') do |count|
 end
 
 Then('the course with ID {string} is included in the response') do |id|
-  expect(parsed_response_body.map { |course| course[:id] }).to include(id)
+  expect(parsed_response_body.map { |o| o[:id] }).to include(id)
 end

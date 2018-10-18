@@ -48,8 +48,4 @@ class TopicsController < ApplicationController
   def load
     @topic = Topic.find_by(id: params[:id])
   end
-
-  def load_program
-    @program = Program.find_by(id: params[:program_id])
-  end
 end

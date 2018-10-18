@@ -48,8 +48,4 @@ class ProgramsController < ApplicationController
   def load
     @program = Program.find_by(id: params[:id])
   end
-
-  def load_subject
-    @subject = Subject.find_by(id: params[:subject_id])
-  end
 end

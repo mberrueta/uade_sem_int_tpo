@@ -1,21 +1,29 @@
 class StudentExamsController < ApplicationController
+  before_action :load_student, only: :create
+  before_action :load_exam, only: :create
+  before_action :load, only: [:show, :update, :destroy]
+  before_action :instantiate, only: :create
+  before_action :load_list, only: :index
+
   def index
     render json: @student_exams
   end
 
   def show
-    render json: @student_exam
+    render json: @student_exam, include: [:exam, :student_answers, :student_exam_qualifications]
   end
 
   def create
     if @student_exam.save
-      render json: @student_exam, status: :created
+      render json: @student_exam
     else
-      render_validation_errors
+      render json: { errors: @student_exam.errors.full_messages }, status: :unprocessable_entity
     end
   end
 
   def update
+    return render json: { errors: 'Not found' }, status: :not_found unless @student_exam
+
     if @student_exam.update(resource_params)
       render json: @student_exam
     else
@@ -33,7 +41,23 @@ class StudentExamsController < ApplicationController
 
   private
 
+  def instantiate
+    @student_exam = StudentExam.new(resource_params)
+    @student_exam.student = @student
+    @student_exam.exam = @exam
+  end
+
   def resource_params
-    params.permit(:name, :organization_id)
+    params.permit(:exam_id)
+  end
+
+  def load
+    @student_exam = StudentExam.find_by(id: params[:id])
+  end
+
+  def load_list
+    @student_exams = StudentExam.where(student_id: params[:student_id]) if params[:student_id]
+    @student_exams = StudentExam.where(exam_id: params[:exam_id]) if params[:exam_id]
+    @student_exams ||= StudentExam.all
   end
 end

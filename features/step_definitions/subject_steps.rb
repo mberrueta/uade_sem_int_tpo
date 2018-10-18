@@ -27,5 +27,5 @@ Then('the subject was removed') do
 end
 
 Then('the subject with ID {string} is included in the response') do |id|
-  expect(parsed_response_body.map { |subject| subject[:id] }).to include(id)
+  expect(parsed_response_body.map { |o| o[:id] }).to include(id)
 end

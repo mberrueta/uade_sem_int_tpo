@@ -48,8 +48,4 @@ class ExamQuestionsController < ApplicationController
   def load
     @exam_question = ExamQuestion.find_by(id: params[:id])
   end
-
-  def load_exam
-    @exam = Exam.find_by(id: params[:exam_id])
-  end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
 
   resources :students, exept: :create do
     resources :parents, only: :create
+    resources :student_exams, path: 'student-exams', only: [:create, :index]
   end
 
   resources :parents, exept: :create
@@ -44,4 +45,6 @@ Rails.application.routes.draw do
   end
 
   resources :exam_questions, path: 'exam-questions', except: :create
+
+  resources :student_exams, path: 'student-exams', except: :create
 end

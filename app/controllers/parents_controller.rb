@@ -48,8 +48,4 @@ class ParentsController < ApplicationController
   def load
     @parent = Parent.find_by(id: params[:id])
   end
-
-  def load_student
-    @student = Student.find_by(id: params[:student_id])
-  end
 end

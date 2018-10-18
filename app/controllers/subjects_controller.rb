@@ -50,10 +50,6 @@ class SubjectsController < ApplicationController
     @subject = Subject.find_by(id: params[:id])
   end
 
-  def load_course
-    @course = Course.find_by(id: params[:course_id])
-  end
-
   def load_list
     @subjects = Subject.where(teacher_id: params[:teacher_id]) if params[:teacher_id]
     @subjects = Subject.where(course_id: params[:course_id]) if params[:course_id]
