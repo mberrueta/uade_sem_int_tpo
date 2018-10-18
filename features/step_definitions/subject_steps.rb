@@ -4,7 +4,8 @@ end
 
 Given('there is a subject with ID {string}') do |id|
   @teacher ||= create(:teacher)
-  @subject = create(:subject, id: id, teacher: @teacher)
+  @course ||= create(:course)
+  @subject = create(:subject, id: id, teacher: @teacher, course: @course)
 end
 
 Then('the subject is included in the response') do
@@ -26,5 +27,5 @@ Then('the subject was removed') do
 end
 
 Then('the subject with ID {string} is included in the response') do |id|
-  expect(parsed_response_body.map { |subject| subject[:id] }).to include(id)
+  expect(parsed_response_body.map { |o| o[:id] }).to include(id)
 end

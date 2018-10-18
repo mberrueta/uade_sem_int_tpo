@@ -3,7 +3,7 @@ Then('the assist has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is an assist with ID {int}') do |id|
+Given('there is an assist with ID {string}') do |id|
   @assist = create(:assist, id: id)
 end
 

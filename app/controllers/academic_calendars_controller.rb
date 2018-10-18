@@ -48,8 +48,4 @@ class AcademicCalendarsController < ApplicationController
   def load
     @academic_calendar = AcademicCalendar.find_by(id: params[:id])
   end
-
-  def load_organization
-    @organization = Organization.find_by(id: params[:organization_id])
-  end
 end

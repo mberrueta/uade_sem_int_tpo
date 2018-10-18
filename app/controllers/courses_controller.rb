@@ -50,10 +50,6 @@ class CoursesController < ApplicationController
     @course = Course.find_by(id: params[:id])
   end
 
-  def load_academic_calendar
-    @academic_calendar = AcademicCalendar.find_by(id: params[:academic_calendar_id])
-  end
-
   def load_list
     @courses = Course.where(manager_id: params[:manager_id]) if params[:manager_id]
     @courses ||= Course.all

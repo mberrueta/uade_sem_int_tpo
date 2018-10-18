@@ -32,6 +32,15 @@ Feature: Managing subjects
     And there are 1 subjects in the response
     And the subject with ID "452de058-a5bb-4976-89e8-f3150cb59c24" is included in the response
 
+  Scenario: Listing subjects by course
+    Given there is a subject with ID '03818d84-75fc-40d0-aa74-343c35fce55e'
+    And there is a course with ID 'd679f9a0-965c-4ae4-be11-8f0d1968f0ad'
+    And there is a subject with ID '452de058-a5bb-4976-89e8-f3150cb59c24'
+    When I request GET /courses/d679f9a0-965c-4ae4-be11-8f0d1968f0ad/subjects
+    Then I get a 200 response
+    And there are 1 subjects in the response
+    And the subject with ID "452de058-a5bb-4976-89e8-f3150cb59c24" is included in the response
+
   Scenario: Viewing single subject
     Given there is a subject with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
     And there is a program with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"

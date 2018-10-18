@@ -32,9 +32,18 @@ Feature: Managing students
 
   Scenario: Viewing single student
     Given there is a 'student' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
+    And there is an qualification_report with ID 'f77d1ae0-09d3-49e7-8ec8-075b5d67ea7a'
+    And there is a subject with ID '452de058-a5bb-4976-89e8-f3150cb53c23'
+    And there is an qualification_report_subject with ID 'ab7d1ae0-09d3-49e7-8ec8-075b5d67ea7a'
+    And there is a subject with ID 'b52de058-a5bb-4976-89e8-f3150ab59c23'
+    And there is an qualification_report_subject with ID 'de7d1ae0-09d3-49e7-8ec8-075b5d67ea7a'
+    And there is a subject with ID '252de058-a5bb-4976-89e8-f3a50cb59c23'
+    And there is an qualification_report_subject with ID '4a7d1ae0-09d3-49e7-8ec8-075b5d67ea7a'
     When I request GET /students/ccc54dc3-32a3-49e7-85e9-929038387529
     Then I get a 200 response
     And the 'student' is included in the response
+    And the student course is included in the response
+    And the student qualification report is included in the response
 
   Scenario: Updating student
     Given there is a 'student' with ID 'be161390-e18e-4d39-ab59-a9e8c2aea0c7'

@@ -46,3 +46,12 @@ end
 Then('the manager first course response subjects count is {int}') do |count|
   expect(parsed_response_body[:courses].first[:subjects_count]).to eq(count)
 end
+
+Then('the student course is included in the response') do
+  expect(parsed_response_body[:course]).not_to be_nil
+end
+
+Then('the student qualification report is included in the response') do
+  expect(parsed_response_body[:qualification_report]).not_to be_nil
+  expect(parsed_response_body[:qualification_report][:qualification_report_subjects]).not_to be_nil
+end
