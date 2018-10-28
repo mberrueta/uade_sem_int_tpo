@@ -9,7 +9,7 @@ Feature: Managing programs
     When I request POST subjects/dc1750e0-968d-44dc-b131-4fd3fc3f7233/programs with the payload:
       """
       {
-          "day": "20191001",
+          "date": "20191001",
           "class_number": 2
       }
       """
@@ -37,19 +37,19 @@ Feature: Managing programs
     When I request PUT /programs/c27c9832-bad7-4c74-ae81-5a20789e0637 with the payload:
       """
       {
-        "day": "2019-10-01"
+        "date": "2019-10-01"
       }
       """
     Then I get a 200 response
     And the program is included in the response
-    And the program day is now "2019-10-01"
+    And the program date is now "2019-10-01"
 
   Scenario: Updating an program that not exists
     And there is a program with ID 'a75a227b-bdc4-40ab-ae4c-482c81b4aa8a'
     When I request PUT /programs/69b4d255-60df-4343-9672-35506c8093c2 with the payload:
       """
       {
-        "day": "20191001"
+        "date": "20191001"
       }
       """
     Then I get a 404 response

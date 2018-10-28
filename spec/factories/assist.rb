@@ -1,14 +1,8 @@
 FactoryBot.define do
   factory :assist do
-    name { Faker::Name.name }
+    student
+    present_code { [:full, :half].sample }
+    date { Faker::Date.forward }
+    course
   end
-
-  # https://github.com/stympy/faker
-  # Faker::Lorem.sentence word paragraph
-  # Faker::Company.name profession logo
-  # Faker::Boolean.boolean
-  # Faker::Name.name
-  # Faker::Number.decimal(2) between(1, 10)
-  # Faker::Date.between(2.days.ago, Date.today)
-
 end

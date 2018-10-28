@@ -42,7 +42,7 @@ class ProgramsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:day, :done, :class_number)
+    params.permit(:date, :done, :class_number)
   end
 
   def load

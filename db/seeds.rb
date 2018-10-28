@@ -55,9 +55,10 @@ student = Student.find_or_create_by(
   email: "trulapagac@walter.io",
   gender: :male,
   picture_url: nil,
-  organization: organization1
+  organization: organization1,
+  course: course
 )
-Student.find_or_create_by(
+student2 = Student.find_or_create_by(
   id: "2b3186c3-83f7-4499-a312-e0789a0b7b10",
   first_name: "Latrina",
   last_name: "Kerluke",
@@ -66,9 +67,10 @@ Student.find_or_create_by(
   email: "soniaheller@feilcronin.co",
   gender: :female,
   picture_url: nil,
-  organization: organization1
+  organization: organization1,
+    course: course
 )
-Student.find_or_create_by(
+student3 = Student.find_or_create_by(
     id: "37dc0193-1f85-4b0e-919f-0276b108049f",
   first_name: "Rosita",
   last_name: "Wunsch",
@@ -77,7 +79,8 @@ Student.find_or_create_by(
   email: "elaynemetz@grimes.name",
   gender: :female,
   picture_url: nil,
-  organization: organization1
+  organization: organization1,
+    course: course
 )
 
 Parent.find_or_create_by(
@@ -145,7 +148,7 @@ Teacher.find_or_create_by(
 program = Program.find_or_create_by(
   id: "67e5f2be-af30-4f4d-b709-77b83656d0c7",
   subject: subject,
-  day: 'Wed, 08 May 2019',
+  date: 'Wed, 08 May 2019',
   done: false,
   title: 'Inicio de la primer guerra mundial',
   description: '',
@@ -156,7 +159,7 @@ program = Program.find_or_create_by(
 Program.find_or_create_by(
   id: "ea2ba1c4-7d3a-4197-97dd-38b3c6d2452f",
   subject: subject,
-  day: 'Wed, 12 May 2019',
+  date: 'Wed, 12 May 2019',
   done: false,
   title: 'Fases de la primer guerra mundial',
   description: '',
@@ -167,7 +170,7 @@ Program.find_or_create_by(
 Program.find_or_create_by(
   id: "05102142-cc75-467f-9fbf-c35a8f891654",
   subject: subject,
-  day: 'Wed, 15 May 2019',
+  date: 'Wed, 15 May 2019',
   done: false,
   title: 'Fin de la primer guerra mundial',
   description: '',
@@ -178,7 +181,7 @@ Program.find_or_create_by(
 Program.find_or_create_by(
   id: "81d5c87d-4bd8-458b-a319-08364ba3c001",
   subject: subject,
-  day: 'Wed, 15 May 2019',
+  date: 'Wed, 15 May 2019',
   done: false,
   title: 'Consecuencias de la primer guerra mundial',
   description: '',
@@ -240,8 +243,8 @@ ExamQuestion.find_or_create_by(
   exam: exam,
   question: "Cristopher Upton",
 ).tap do |eq|
-    eq.options = ["Ayako Hoeger", "Leo Doyle Jr.", "Dee Brakus", "Elisha Lang"]
-    eq.save!
+  eq.options = ["Ayako Hoeger", "Leo Doyle Jr.", "Dee Brakus", "Elisha Lang"]
+  eq.save!
 end
 
 
@@ -250,6 +253,65 @@ ExamQuestion.find_or_create_by(
   exam: exam,
   question: "Miss Tijuana Schaefer",
 ).tap do |eq|
-    eq.options = ["Delilah Leffler", "Floyd Lakin", "Caron Carter", "Modesto Hackett Jr."]
-    eq.save!
-  end
+  eq.options = ["Delilah Leffler", "Floyd Lakin", "Caron Carter", "Modesto Hackett Jr."]
+  eq.save!
+end
+
+Assist.find_or_create_by(
+  id: 'e32706a9-81c6-4d03-8b26-bdcd81fce04f',
+  course: course,
+  student: student,
+  date: '2018-10-28',
+  present_code: 'full'
+)
+Assist.find_or_create_by(
+  id: 'c8534b10-9ff9-4b88-8715-fe279b8b1ac4',
+  course: course,
+  student: student,
+  date: '2018-10-29',
+  present_code: 'full'
+)
+Assist.find_or_create_by(
+  id: '19002f55-130d-4c4e-af85-11337baaadb3',
+  course: course,
+  student: student,
+  date: '2018-10-30',
+  present_code: 'full'
+)
+
+Assist.find_or_create_by(
+  id: '13b601cb-fce6-4006-9e6a-cdee00dd20df',
+  course: course,
+  student: student2,
+  date: '2018-10-28',
+  present_code: 'full'
+)
+Assist.find_or_create_by(
+  id: 'd3cb747e-edec-4559-ba0b-0365f2627f79',
+  course: course,
+  student: student2,
+  date: '2018-10-29',
+  present_code: 'full'
+)
+Assist.find_or_create_by(
+  id: 'c75e85e5-fcb1-4c8f-a39e-e20172006d7f',
+  course: course,
+  student: student2,
+  date: '2018-10-30',
+  present_code: 'half'
+)
+
+Assist.find_or_create_by(
+  id: '2f2fc2de-23d0-4f10-9972-25c29962cf97',
+  course: course,
+  student: student3,
+  date: '2018-10-28',
+  present_code: 'full'
+)
+Assist.find_or_create_by(
+  id: '4d0a102e-9797-493a-b332-b3205a10c436',
+  course: course,
+  student: student3,
+  date: '2018-10-30',
+  present_code: 'full'
+)
