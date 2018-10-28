@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "assists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
     t.uuid "course_id"
-    t.date "day"
+    t.date "date"
     t.string "present_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -112,7 +112,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "programs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "subject_id"
-    t.date "day"
+    t.date "date"
     t.boolean "done", default: false
     t.integer "class_number"
     t.string "title"
@@ -144,8 +144,8 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "student_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_exam_id"
-    t.string "answer_code", default: '', null: false
-    t.boolean "correct", default: false, null: false
+    t.string "answer_code"
+    t.boolean "correct"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["student_exam_id"], name: "index_student_answers_on_student_exam_id"
@@ -153,8 +153,8 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "student_exam_qualifications", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_exam_id"
-    t.float "result", default: 0, null: false
-    t.float "score", default: 0, null: false
+    t.float "result"
+    t.float "score"
     t.string "notes"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -164,7 +164,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "student_exams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "exam_id"
     t.uuid "student_id"
-    t.integer "questions_to_show", default: 0, null: false
+    t.integer "questions_to_show"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["exam_id"], name: "index_student_exams_on_exam_id"

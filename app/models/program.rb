@@ -1,5 +1,5 @@
 class Program < ApplicationRecord
-  validates :subject, :day, :class_number, presence: true
+  validates :subject, :date, :class_number, presence: true
 
   before_validation :assign_class_number, unless: :class_number
 

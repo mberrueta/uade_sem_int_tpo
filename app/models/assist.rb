@@ -1,7 +1,7 @@
 class Assist < ApplicationRecord
-  PRESENT_CODES = [:false, :true, :late].freeze
+  PRESENT_CODES = [:full, :half].freeze
 
-  validates :day, presence: true
+  validates :date, presence: true
   validate :correct_type?
 
   belongs_to :student

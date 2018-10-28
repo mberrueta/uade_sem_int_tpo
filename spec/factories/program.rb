@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :program do
-    day { Faker::Date.forward }
+    date { Faker::Date.forward }
     subject
     picture_url { Faker::LoremFlickr.image }
     title { Faker::Name.name }

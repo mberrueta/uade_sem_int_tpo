@@ -125,7 +125,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     create_table :assists, id: :uuid  do |t|
       t.uuid :student_id, index: true
       t.uuid :course_id, index: true
-      t.date :day
+      t.date :date
       t.string :present_code
       t.timestamps
     end
@@ -147,7 +147,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
 
     create_table :programs, id: :uuid  do |t|
       t.uuid :subject_id, index: true
-      t.date :day
+      t.date :date
       t.boolean :done, default: false
       t.integer :class_number
       t.string :title
