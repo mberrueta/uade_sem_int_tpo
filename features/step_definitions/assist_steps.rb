@@ -15,10 +15,10 @@ end
 Then('the assist is included in the response') do
   @assist ||= Assist.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@assist.reload.id)
-  expect(parsed_response_body[:student_id]).to eq(@assist.student_id)
+  expect(parsed_response_body[:student][:id]).to eq(@assist.student_id)
   expect(parsed_response_body[:present_code]).to eq(@assist.present_code)
   expect(parsed_response_body[:date]).to eq(@assist.date&.strftime('%Y-%m-%d'))
-  expect(parsed_response_body[:course_id]).to eq(@assist.course_id)
+  expect(parsed_response_body[:course][:id]).to eq(@assist.course_id)
 end
 
 Then('the assist present_code is now {string}') do |present_code|
