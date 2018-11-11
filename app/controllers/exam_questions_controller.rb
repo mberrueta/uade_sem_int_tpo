@@ -1,9 +1,10 @@
 class ExamQuestionsController < ApplicationController
   before_action :load_exam, only: :create
   before_action :load, only: [:show, :update, :destroy]
+  before_action :load_list, only: :index
 
   def index
-    render json: ExamQuestion.all
+    render json: @exam_questions
   end
 
   def show
@@ -47,5 +48,10 @@ class ExamQuestionsController < ApplicationController
 
   def load
     @exam_question = ExamQuestion.find_by(id: params[:id])
+  end
+
+  def load_list
+    @exam_questions = ExamQuestion.where(exam_id: params[:exam_id]) if params[:exam_id]
+    @exam_questions ||= ExamQuestion.all
   end
 end

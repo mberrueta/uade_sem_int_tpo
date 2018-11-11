@@ -29,7 +29,9 @@ Feature: Managing exam_questions
     And there are 2 exam_questions in the response
 
   Scenario: Listing questions by exam
-    Given there is an exam with ID "3d25062d-ef04-4a47-a6ce-ddd44d4b695d"
+    Given there is an exam with ID "0c2fffe6-f8c1-4d66-8c7e-4b03d11db5a1"
+    And there is an exam question with ID '3567d9bb-6f54-4a2d-8d0a-ea123c766649'
+    And there is an exam with ID "3d25062d-ef04-4a47-a6ce-ddd44d4b695d"
     And there is an exam question with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
     And there is an exam question with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'
     When I request GET /exams/3d25062d-ef04-4a47-a6ce-ddd44d4b695d/exam-questions/
