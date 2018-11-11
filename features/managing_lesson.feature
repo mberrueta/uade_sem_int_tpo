@@ -16,7 +16,8 @@ Feature: Managing lessons
     Then I get a 200 response
     And the lesson has been created
     And the lesson is included in the response
-
+And pretty print the response
+    
   Scenario: Listing lessons
     Given there is a lesson with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
     And there is a lesson with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'

@@ -64,12 +64,24 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :courses, :people, column: :manager_id
     add_foreign_key :subjects, :people, column: :teacher_id
 
-    create_table :exams, id: :uuid  do |t|
-      t.string :title, required: true
+    create_table :lessons, id: :uuid  do |t|
       t.uuid :subject_id, index: true
+      t.date :date
+      t.boolean :done, default: false
+      t.integer :class_number
+      t.string :title
+      t.string :description
+      t.string :picture_url
       t.timestamps
     end
-    add_foreign_key :exams, :subjects
+    add_foreign_key :lessons, :subjects
+
+    create_table :exams, id: :uuid  do |t|
+      t.string :title, required: true
+      t.uuid :lesson_id, index: true
+      t.timestamps
+    end
+    add_foreign_key :exams, :lessons
 
     create_table :student_exams, id: :uuid  do |t|
       t.uuid :exam_id, index: true
@@ -144,18 +156,6 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     end
     add_index :news, [:newsable_type, :newsable_id]
     add_foreign_key :news, :organizations
-
-    create_table :lessons, id: :uuid  do |t|
-      t.uuid :subject_id, index: true
-      t.date :date
-      t.boolean :done, default: false
-      t.integer :class_number
-      t.string :title
-      t.string :description
-      t.string :picture_url
-      t.timestamps
-    end
-    add_foreign_key :lessons, :subjects
 
     create_table :topics, id: :uuid  do |t|
       t.uuid :lesson_id, index: true

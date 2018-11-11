@@ -5,8 +5,8 @@ Feature: Managing exams
   I should be able to create, edit, view or delete the exams from my organization
 
   Scenario: Creating an exam with minimum required attributes
-    Given there is a subject with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
-    When I request POST subjects/dc1750e0-968d-44dc-b131-4fd3fc3f7233/exams with the payload:
+    Given there is a lesson with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
+    When I request POST lessons/dc1750e0-968d-44dc-b131-4fd3fc3f7233/exams with the payload:
       """
       {
           "title": "some exam"

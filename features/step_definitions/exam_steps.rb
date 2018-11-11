@@ -11,6 +11,7 @@ Then('the exam is included in the response') do
   @exam ||= Exam.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@exam.reload.id)
   expect(parsed_response_body[:title]).to eq(@exam.title)
+  expect(parsed_response_body[:lesson][:id]).to eq(@exam.lesson_id) if @exam.lesson
 end
 
 Then('the exam title is now {string}') do |title|

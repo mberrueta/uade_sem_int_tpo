@@ -1,5 +1,5 @@
 class ExamsController < ApplicationController
-  before_action :load_subject, only: :create
+  before_action :load_lesson, only: :create
   before_action :load, only: [:show, :update, :destroy]
 
   def index
@@ -12,7 +12,7 @@ class ExamsController < ApplicationController
 
   def create
     exam = Exam.new(resource_params)
-    exam.subject = @subject
+    exam.lesson = @lesson
 
     if exam.save
       render json: exam
@@ -42,7 +42,7 @@ class ExamsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:title)
+    params.permit(:title, :lesson_id)
   end
 
   def load

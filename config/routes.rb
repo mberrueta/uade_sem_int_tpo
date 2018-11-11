@@ -39,11 +39,11 @@ Rails.application.routes.draw do
 
   resources :subjects, except: :create do
     resources :lessons, only: :create
-    resources :exams, only: :create
   end
 
   resources :lessons, except: :create do
     resources :topics, only: :create
+    resources :exams, only: :create
   end
 
   resources :topics, except: :create

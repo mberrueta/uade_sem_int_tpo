@@ -61,10 +61,23 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "exams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
-    t.uuid "subject_id"
+    t.uuid "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_exams_on_subject_id"
+    t.index ["lesson_id"], name: "index_exams_on_lesson_id"
+  end
+
+  create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "subject_id"
+    t.date "date"
+    t.boolean "done", default: false
+    t.integer "class_number"
+    t.string "title"
+    t.string "description"
+    t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
   create_table "news", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -108,19 +121,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_people_on_organization_id"
-  end
-
-  create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "subject_id"
-    t.date "date"
-    t.boolean "done", default: false
-    t.integer "class_number"
-    t.string "title"
-    t.string "description"
-    t.string "picture_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
   create_table "qualification_report_subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -199,11 +199,11 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "courses", "academic_calendars"
   add_foreign_key "courses", "people", column: "manager_id"
   add_foreign_key "exam_questions", "exams"
-  add_foreign_key "exams", "subjects"
+  add_foreign_key "exams", "lessons"
+  add_foreign_key "lessons", "subjects"
   add_foreign_key "news", "organizations"
   add_foreign_key "people", "courses"
   add_foreign_key "people", "organizations"
-  add_foreign_key "lessons", "subjects"
   add_foreign_key "qualification_report_subjects", "qualification_reports"
   add_foreign_key "qualification_report_subjects", "subjects"
   add_foreign_key "qualification_reports", "people", column: "student_id"
