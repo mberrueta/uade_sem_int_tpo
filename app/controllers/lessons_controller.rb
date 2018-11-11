@@ -4,11 +4,11 @@ class LessonsController < ApplicationController
   before_action :load_list, only: :index
 
   def index
-    render json: @lessons
+    render json: @lessons, serializer: ::LessonSerializer
   end
 
   def show
-    render json: @lesson
+    render json: @lesson, serializer: ::LessonSerializer
   end
 
   def create
@@ -43,7 +43,7 @@ class LessonsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:date, :done, :class_number, :subject_id)
+    params.permit(:date, :done, :class_number, :subject_id, :title, :description, :picture_url)
   end
 
   def load

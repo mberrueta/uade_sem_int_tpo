@@ -4,4 +4,5 @@ class LessonSerializer < AbstractSerializer
   has_many :topics, serializer: ::TopicSerializer
   has_one :teacher
   belongs_to :subject
+  has_one :exam, serializer: ::ExamSerializer
 end

@@ -11,7 +11,8 @@ Feature: Managing lessons
       """
       {
           "date": "20191001",
-          "class_number": 2
+          "class_number": 2,
+          "title": "A cool lesson"
       }
       """
     Then I get a 200 response

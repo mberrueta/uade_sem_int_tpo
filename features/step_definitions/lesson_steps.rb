@@ -17,6 +17,8 @@ Then('the lesson is included in the response') do
   expect(parsed_response_body[:date]).to eq(@lesson.date.strftime('%Y-%m-%d'))
   expect(parsed_response_body[:class_number]).to eq(@lesson.class_number)
   expect(parsed_response_body[:subject][:id]).to eq(@lesson.subject.id) if parsed_response_body[:subject]
+  expect(parsed_response_body[:teacher][:id]).to eq(@lesson.subject.teacher.id) if parsed_response_body[:teacher]
+  expect(parsed_response_body[:exam][:id]).to eq(@lesson.exam.id) if parsed_response_body[:exam]
 end
 
 Then('the lesson name is now {string}') do |name|

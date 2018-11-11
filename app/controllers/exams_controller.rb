@@ -4,11 +4,11 @@ class ExamsController < ApplicationController
   before_action :load_list, only: :index
 
   def index
-    render json: @exams
+    render json: @exams, serializer: ::ExamSerializer
   end
 
   def show
-    render json: @exam
+    render json: @exam, serializer: ::ExamSerializer
   end
 
   def create

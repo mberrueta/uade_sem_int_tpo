@@ -1,4 +1,4 @@
 class ExamSerializer < AbstractSerializer
-  belongs_to :title
+  attributes :title
   has_one :lesson
 end

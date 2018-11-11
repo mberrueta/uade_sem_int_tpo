@@ -78,6 +78,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true
+      t.boolean :enabled,
       t.uuid :lesson_id, index: true
       t.timestamps
     end
