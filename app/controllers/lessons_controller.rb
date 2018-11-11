@@ -1,9 +1,10 @@
 class LessonsController < ApplicationController
   before_action :load_subject, only: :create
   before_action :load, only: [:show, :update, :destroy]
+  before_action :load_list, only: :index
 
   def index
-    render json: Lesson.all
+    render json: @lessons
   end
 
   def show
@@ -42,10 +43,16 @@ class LessonsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:date, :done, :class_number)
+    params.permit(:date, :done, :class_number, :subject_id)
   end
 
   def load
     @lesson = Lesson.find_by(id: params[:id])
+  end
+
+  def load_list
+    @lessons = Lesson.where(subject_id: params[:subject_id]) if params[:subject_id]
+    @lessons = Lesson.joins(:subject).where(subjects: { teacher_id: params[:teacher_id] }) if params[:teacher_id]
+    @lessons ||= Lesson.all
   end
 end

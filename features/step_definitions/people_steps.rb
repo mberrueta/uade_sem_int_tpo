@@ -15,6 +15,7 @@ Then('the {string} is included in the response') do |_type|
   expect(parsed_response_body[:address]).to eq(@person.address)
   expect(parsed_response_body[:email]).to eq(@person.email)
   expect(parsed_response_body[:gender]).to eq(@person.gender)
+  expect(parsed_response_body[:gender]).to eq(@person.gender)
 end
 
 Then('the {string} first name is now {string}') do |_type, first_name|

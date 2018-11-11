@@ -4,7 +4,10 @@ Then('the lesson has been created') do
 end
 
 Given('there is a lesson with ID {string}') do |id|
-  @subject ||= create(:subject)
+  @teacher ||= create(:teacher)
+  @subject ||= create(:subject, teacher: @teacher)
+
+  pp @teacher.first_name
   @lesson = create(:lesson, id: id, subject: @subject)
 end
 
@@ -30,4 +33,8 @@ end
 
 Then('the lesson date is now {string}') do |date|
   expect(parsed_response_body[:date]).to eq(date)
+end
+
+Then('the lesson teacher_id is now {string}') do |id|
+  expect(parsed_response_body[:teacher][:id]).to eq(id)
 end

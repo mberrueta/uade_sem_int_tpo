@@ -18,6 +18,7 @@ Rails.application.routes.draw do
 
   resources :teachers, exept: :create do
     resources :subjects, only: :index
+    resources :lessons, only: :index
   end
 
   resources :managers, exept: :create do
@@ -38,7 +39,7 @@ Rails.application.routes.draw do
   end
 
   resources :subjects, except: :create do
-    resources :lessons, only: :create
+    resources :lessons, only: [:create, :index]
   end
 
   resources :lessons, except: :create do

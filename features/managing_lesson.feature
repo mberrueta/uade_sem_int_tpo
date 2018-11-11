@@ -5,7 +5,8 @@ Feature: Managing lessons
   I should be able to create, edit, view or delete the lessons from my organization
 
   Scenario: Creating an lesson with minimum required attributes
-    Given there is a subject with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
+    Given there is a 'teacher' with ID '3a20b9d7-4b24-45bd-9dc1-b52731237f8e'
+    And there is a subject with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
     When I request POST subjects/dc1750e0-968d-44dc-b131-4fd3fc3f7233/lessons with the payload:
       """
       {
@@ -16,14 +17,31 @@ Feature: Managing lessons
     Then I get a 200 response
     And the lesson has been created
     And the lesson is included in the response
-And pretty print the response
-    
+    And the lesson teacher_id is now "3a20b9d7-4b24-45bd-9dc1-b52731237f8e"
+
   Scenario: Listing lessons
     Given there is a lesson with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
     And there is a lesson with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'
     When I request GET /lessons/
     Then I get a 200 response
     And there are 2 lessons in the response
+
+  Scenario: Listing lessons by teacher
+    Given there is a lesson with ID '44d30604-93a0-4ded-ae8b-2a8dd736eadd'
+    And there is a 'teacher' with ID 'bf4288f7-bbe2-4297-a166-3026be601475'
+    And there is a subject with ID '53b31314-6290-43ad-85f0-f10e5407fc3f'
+    And there is a lesson with ID '2f34e1f3-94d3-47c7-a2bc-4ad54a832f97'
+    When I request GET /teachers/bf4288f7-bbe2-4297-a166-3026be601475/lessons/
+    Then I get a 200 response
+    And there are 1 lessons in the response
+
+  Scenario: Listing lessons by subject
+    Given there is a lesson with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
+    And there is a subject with ID 'c6ee3586-0be0-48aa-823d-5b29c420816b'
+    And there is a lesson with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'
+    When I request GET subjects/c6ee3586-0be0-48aa-823d-5b29c420816b/lessons/
+    Then I get a 200 response
+    And there are 1 lessons in the response
 
   Scenario: Viewing single lesson
     Given there is a lesson with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
