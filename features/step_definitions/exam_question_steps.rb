@@ -4,7 +4,8 @@ Then('the exam question has been created') do
 end
 
 Given('there is an exam question with ID {string}') do |id|
-  @exam_question = create(:exam_question, id: id)
+  @exam ||= create(:exam)
+  @exam_question = create(:exam_question, id: id, exam: @exam)
 end
 
 Then('the exam question is included in the response') do

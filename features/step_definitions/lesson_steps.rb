@@ -6,8 +6,6 @@ end
 Given('there is a lesson with ID {string}') do |id|
   @teacher ||= create(:teacher)
   @subject ||= create(:subject, teacher: @teacher)
-
-  pp @teacher.first_name
   @lesson = create(:lesson, id: id, subject: @subject)
 end
 

@@ -17,8 +17,8 @@ Feature: Managing exams
     And the exam is included in the response
 
   Scenario: Listing exams
-    Given there is an exam with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
-    And there is an exam with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'
+    Given there is a lesson with ID '3c238286-43d7-493d-90f7-93e21cf887a9'
+    And there is a lesson with ID 'cc30e10e-2fff-4542-bb27-f68566e5bfc5'
     When I request GET /exams/
     Then I get a 200 response
     And there are 2 exams in the response

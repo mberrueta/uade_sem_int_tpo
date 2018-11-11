@@ -28,6 +28,14 @@ Feature: Managing exam_questions
     Then I get a 200 response
     And there are 2 exam_questions in the response
 
+  Scenario: Listing questions by exam
+    Given there is an exam with ID "3d25062d-ef04-4a47-a6ce-ddd44d4b695d"
+    And there is an exam question with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
+    And there is an exam question with ID 'fbab54c2-90c5-4914-a885-d38a6b826efe'
+    When I request GET /exams/3d25062d-ef04-4a47-a6ce-ddd44d4b695d/exam-questions/
+    Then I get a 200 response
+    And there are 2 exam_questions in the response
+
   Scenario: Viewing single exam_question
     Given there is an exam question with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
     When I request GET /exam-questions/76ff8ffc-e643-443d-aa87-9ec344317f65
