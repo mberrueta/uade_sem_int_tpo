@@ -12,6 +12,8 @@ Then('the subject is included in the response') do
   @subject ||= Subject.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@subject.reload.id)
   expect(parsed_response_body[:name]).to eq(@subject.name)
+  expect(parsed_response_body[:lessons].count).to eq(@subject.lessons.count)
+  expect(parsed_response_body[:teacher][:id]).to eq(@subject.teacher_id) if @subject.teacher
 end
 
 Then('the subject name is now {string}') do |name|
@@ -28,4 +30,8 @@ end
 
 Then('the subject with ID {string} is included in the response') do |id|
   expect(parsed_response_body.map { |o| o[:id] }).to include(id)
+end
+
+Then('the subject teacher_id is now {string}') do |id|
+  expect(parsed_response_body[:teacher][:id]).to eq(id)
 end
