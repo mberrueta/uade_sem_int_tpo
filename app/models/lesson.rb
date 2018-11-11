@@ -5,7 +5,7 @@ class Lesson < ApplicationRecord
 
   has_many :topics, dependent: :destroy
   belongs_to :subject
-  has_one :exam
+  has_one :exam, dependent: :destroy
 
   delegate :count, to: :topics, prefix: true
   delegate :teacher, to: :subject

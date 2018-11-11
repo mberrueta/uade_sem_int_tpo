@@ -12,7 +12,7 @@ Then('the exam question is included in the response') do
   @exam_question ||= ExamQuestion.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@exam_question.reload.id)
   expect(parsed_response_body[:question]).to eq(@exam_question.question)
-  expect(parsed_response_body[:options]).to eq(@exam_question.options)
+  expect(parsed_response_body[:options].count).to eq(@exam_question.options.count)
 end
 
 Then('the exam question is now {string}') do |question|
