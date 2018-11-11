@@ -8,7 +8,7 @@ class Subject < ApplicationRecord
 
   belongs_to :teacher, optional: true
   belongs_to :course
-  has_many :programs, dependent: :destroy
+  has_many :lessons, dependent: :destroy
   has_many :qualification_report_subjects, dependent: :destroy
 
   private

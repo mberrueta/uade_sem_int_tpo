@@ -43,7 +43,7 @@ Feature: Managing subjects
 
   Scenario: Viewing single subject
     Given there is a subject with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
-    And there is a program with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
+    And there is a lesson with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
     And there is a topic with ID "0d11ec5c-4004-4f7e-aa51-9e3e36e8862b"
     And there is a topic with ID "6140de1d-db63-47de-9a0f-80a79b11ed51"
     When I request GET /subjects/76ff8ffc-e643-443d-aa87-9ec344317f65

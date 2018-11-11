@@ -145,7 +145,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_index :news, [:newsable_type, :newsable_id]
     add_foreign_key :news, :organizations
 
-    create_table :programs, id: :uuid  do |t|
+    create_table :lessons, id: :uuid  do |t|
       t.uuid :subject_id, index: true
       t.date :date
       t.boolean :done, default: false
@@ -155,14 +155,14 @@ class AddDbModel < ActiveRecord::Migration[5.2]
       t.string :picture_url
       t.timestamps
     end
-    add_foreign_key :programs, :subjects
+    add_foreign_key :lessons, :subjects
 
     create_table :topics, id: :uuid  do |t|
-      t.uuid :program_id, index: true
+      t.uuid :lesson_id, index: true
       t.string :title
       t.string :description
       t.timestamps
     end
-    add_foreign_key :topics, :programs
+    add_foreign_key :topics, :lessons
   end
 end

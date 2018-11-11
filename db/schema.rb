@@ -110,7 +110,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.index ["organization_id"], name: "index_people_on_organization_id"
   end
 
-  create_table "programs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "subject_id"
     t.date "date"
     t.boolean "done", default: false
@@ -120,7 +120,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.string "picture_url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_programs_on_subject_id"
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
   create_table "qualification_report_subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -185,12 +185,12 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   end
 
   create_table "topics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "program_id"
+    t.uuid "lesson_id"
     t.string "title"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["program_id"], name: "index_topics_on_program_id"
+    t.index ["lesson_id"], name: "index_topics_on_lesson_id"
   end
 
   add_foreign_key "academic_calendars", "organizations"
@@ -203,7 +203,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "news", "organizations"
   add_foreign_key "people", "courses"
   add_foreign_key "people", "organizations"
-  add_foreign_key "programs", "subjects"
+  add_foreign_key "lessons", "subjects"
   add_foreign_key "qualification_report_subjects", "qualification_reports"
   add_foreign_key "qualification_report_subjects", "subjects"
   add_foreign_key "qualification_reports", "people", column: "student_id"
@@ -213,5 +213,5 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "student_exams", "people", column: "student_id"
   add_foreign_key "subjects", "courses"
   add_foreign_key "subjects", "people", column: "teacher_id"
-  add_foreign_key "topics", "programs"
+  add_foreign_key "topics", "lessons"
 end

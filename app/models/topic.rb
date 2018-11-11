@@ -1,5 +1,5 @@
 class Topic < ApplicationRecord
-  validates :title, :program, presence: true
+  validates :title, :lesson, presence: true
 
-  belongs_to :program
+  belongs_to :lesson
 end

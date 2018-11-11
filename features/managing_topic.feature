@@ -5,8 +5,8 @@ Feature: Managing topics
   I should be able to create, edit, view or delete the topics from my organization
 
   Scenario: Creating an topic with minimum required attributes
-    Given there is a program with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
-    When I request POST programs/dc1750e0-968d-44dc-b131-4fd3fc3f7233/topics with the payload:
+    Given there is a lesson with ID 'dc1750e0-968d-44dc-b131-4fd3fc3f7233'
+    When I request POST lessons/dc1750e0-968d-44dc-b131-4fd3fc3f7233/topics with the payload:
       """
       {
           "title": "something"

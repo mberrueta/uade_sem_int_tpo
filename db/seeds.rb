@@ -145,7 +145,7 @@ Teacher.find_or_create_by(
   organization: organization1
 )
 
-program = Program.find_or_create_by(
+lesson = Lesson.find_or_create_by(
   id: "67e5f2be-af30-4f4d-b709-77b83656d0c7",
   subject: subject,
   date: 'Wed, 08 May 2019',
@@ -156,7 +156,7 @@ program = Program.find_or_create_by(
   class_number: 1
 )
 
-Program.find_or_create_by(
+Lesson.find_or_create_by(
   id: "ea2ba1c4-7d3a-4197-97dd-38b3c6d2452f",
   subject: subject,
   date: 'Wed, 12 May 2019',
@@ -167,7 +167,7 @@ Program.find_or_create_by(
   class_number: 2
 )
 
-Program.find_or_create_by(
+Lesson.find_or_create_by(
   id: "05102142-cc75-467f-9fbf-c35a8f891654",
   subject: subject,
   date: 'Wed, 15 May 2019',
@@ -178,7 +178,7 @@ Program.find_or_create_by(
   class_number: 3
 )
 
-Program.find_or_create_by(
+Lesson.find_or_create_by(
   id: "81d5c87d-4bd8-458b-a319-08364ba3c001",
   subject: subject,
   date: 'Wed, 15 May 2019',
@@ -191,21 +191,21 @@ Program.find_or_create_by(
 
 Topic.find_or_create_by(
   id: "59bb41e8-cea7-4ef6-bf82-c058e21b9524",
-  program: program,
+  lesson: lesson,
   title: "Causas de la Primera Guerra Mundial",
   description: nil
 )
 
 Topic.find_or_create_by(
   id: "d7684532-f488-44cc-9b00-258f41b9cc3d",
-  program: program,
+  lesson: lesson,
   title: "El inicio de la gran guerra",
   description: nil
 )
 
 Topic.find_or_create_by(
   id: "1dd29f65-1e8a-4554-95fb-ca5430399641",
-  program: program,
+  lesson: lesson,
   title: "Desarrollo de la guerra",
   description: nil
 )

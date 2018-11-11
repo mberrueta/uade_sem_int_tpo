@@ -1,4 +1,4 @@
-class Program < ApplicationRecord
+class Lesson < ApplicationRecord
   validates :subject, :date, :class_number, presence: true
 
   before_validation :assign_class_number, unless: :class_number
@@ -15,6 +15,6 @@ class Program < ApplicationRecord
   end
 
   def max_class
-    Program.where(subject: subject).maximum(:class_number) || 0
+    Lesson.where(subject: subject).maximum(:class_number) || 0
   end
 end
