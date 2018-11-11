@@ -19,11 +19,11 @@ class Student < Person
   private
 
   def create_qualification_report
-    QualificationReport.find_or_create_by(student_id: id)
+    report = QualificationReport.find_or_create_by(student_id: id)
 
     course.subjects.each do |subject|
       QualificationReportSubject.find_or_create_by(
-        student_id: id,
+        qualification_report_id: report.id,
         subject_id: subject.id
       )
     end

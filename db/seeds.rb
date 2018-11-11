@@ -156,7 +156,7 @@ lesson = Lesson.find_or_create_by(
   class_number: 1
 )
 
-Lesson.find_or_create_by(
+lesson1 = Lesson.find_or_create_by(
   id: "ea2ba1c4-7d3a-4197-97dd-38b3c6d2452f",
   subject: subject,
   date: 'Wed, 12 May 2019',
@@ -167,7 +167,7 @@ Lesson.find_or_create_by(
   class_number: 2
 )
 
-Lesson.find_or_create_by(
+lesson2 = Lesson.find_or_create_by(
   id: "05102142-cc75-467f-9fbf-c35a8f891654",
   subject: subject,
   date: 'Wed, 15 May 2019',
@@ -213,19 +213,19 @@ Topic.find_or_create_by(
 exam = Exam.find_or_create_by(
   id: "05107a51-85ec-42ed-8a76-cd7f89dc2447",
   title: "Ming Murphy",
-  subject: subject
+  lesson: lesson
 )
 
 Exam.find_or_create_by(
   id: "d9693e26-d248-49fb-85dd-e2af68aa7bf2",
   title: "Mike Hammes",
-  subject: subject
+  lesson: lesson1
 )
 
 Exam.find_or_create_by(
   id: "cfdd960d-c313-4bc6-96a0-d4e583f79f74",
   title: "Carmelo Conroy",
-  subject: subject
+  lesson: lesson2
 )
 
 ExamQuestion.find_or_create_by(
