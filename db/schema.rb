@@ -20,21 +20,21 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "academic_calendars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organization_id"
     t.integer "year"
-    t.string "calendar_type"w
+    t.string "calendar_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_academic_calendars_on_organization_id"
   end
 
-  create_table "assists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
     t.uuid "course_id"
     t.date "date"
     t.string "present_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_assists_on_course_id"
-    t.index ["student_id"], name: "index_assists_on_student_id"
+    t.index ["course_id"], name: "index_attendances_on_course_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -194,8 +194,8 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   end
 
   add_foreign_key "academic_calendars", "organizations"
-  add_foreign_key "assists", "courses"
-  add_foreign_key "assists", "people", column: "student_id"
+  add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "people", column: "student_id"
   add_foreign_key "courses", "academic_calendars"
   add_foreign_key "courses", "people", column: "manager_id"
   add_foreign_key "exam_questions", "exams"

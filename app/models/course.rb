@@ -8,7 +8,7 @@ class Course < ApplicationRecord
   belongs_to :manager, optional: true
   has_many :subjects, dependent: :destroy
   has_many :students
-  has_many :assists, dependent: :destroy
+  has_many :attendances, dependent: :destroy
 
   before_validation :set_defaults
 

@@ -257,21 +257,21 @@ ExamQuestion.find_or_create_by(
   eq.save!
 end
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'e32706a9-81c6-4d03-8b26-bdcd81fce04f',
   course: course,
   student: student,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'c8534b10-9ff9-4b88-8715-fe279b8b1ac4',
   course: course,
   student: student,
   date: '2018-10-29',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '19002f55-130d-4c4e-af85-11337baaadb3',
   course: course,
   student: student,
@@ -279,21 +279,21 @@ Assist.find_or_create_by(
   present_code: 'full'
 )
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '13b601cb-fce6-4006-9e6a-cdee00dd20df',
   course: course,
   student: student2,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'd3cb747e-edec-4559-ba0b-0365f2627f79',
   course: course,
   student: student2,
   date: '2018-10-29',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'c75e85e5-fcb1-4c8f-a39e-e20172006d7f',
   course: course,
   student: student2,
@@ -301,14 +301,14 @@ Assist.find_or_create_by(
   present_code: 'half'
 )
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '2f2fc2de-23d0-4f10-9972-25c29962cf97',
   course: course,
   student: student3,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '4d0a102e-9797-493a-b332-b3205a10c436',
   course: course,
   student: student3,

@@ -122,15 +122,15 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :qualification_report_subjects, :subjects
     add_foreign_key :qualification_report_subjects, :qualification_reports
 
-    create_table :assists, id: :uuid  do |t|
+    create_table :attendances, id: :uuid  do |t|
       t.uuid :student_id, index: true
       t.uuid :course_id, index: true
       t.date :date
       t.string :present_code
       t.timestamps
     end
-    add_foreign_key :assists, :people, column: :student_id
-    add_foreign_key :assists, :courses
+    add_foreign_key :attendances, :people, column: :student_id
+    add_foreign_key :attendances, :courses
 
     create_table :news, id: :uuid  do |t|
       t.uuid :organization_id, index: true

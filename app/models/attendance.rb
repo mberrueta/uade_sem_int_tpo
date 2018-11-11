@@ -1,4 +1,4 @@
-class Assist < ApplicationRecord
+class Attendance < ApplicationRecord
   PRESENT_CODES = [:full, :half].freeze
 
   validates :date, presence: true
@@ -16,6 +16,6 @@ class Assist < ApplicationRecord
   end
 
   def correct_type?
-    errors.add(:assist, "Invalid #{present_code}, code must be #{PRESENT_CODES}") unless PRESENT_CODES.include?(present_code.to_sym)
+    errors.add(:attendance, "Invalid #{present_code}, code must be #{PRESENT_CODES}") unless PRESENT_CODES.include?(present_code.to_sym)
   end
 end

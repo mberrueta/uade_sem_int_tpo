@@ -1,4 +1,4 @@
-class AssistSerializer < AbstractSerializer
+class AttendanceSerializer < AbstractSerializer
   attributes :date, :present_code
 
   belongs_to :student, serializer: ::StudentSerializer

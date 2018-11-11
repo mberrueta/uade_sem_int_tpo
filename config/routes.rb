@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   resources :students, exept: :create do
     resources :parents, only: :create
     resources :student_exams, path: 'student-exams', only: [:create, :index]
-    resources :assists, only: :index
+    resources :attendances, only: :index
 
   end
 
@@ -29,7 +29,7 @@ Rails.application.routes.draw do
 
   resources :courses, exept: :create do
     resources :subjects, only: [:create, :index]
-    resources :assists, only: :index, only: [:create, :index]
+    resources :attendances, only: :index, only: [:create, :index]
   end
 
   resources :subjects, except: :create do
@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   resources :topics, except: :create
 
-  resources :assists, except: :create
+  resources :attendances, except: :create
 
   resources :exams, except: :create do
     resources :exam_questions, path: 'exam-questions', only: :create
