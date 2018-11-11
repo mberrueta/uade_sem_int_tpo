@@ -21,5 +21,8 @@ FactoryBot.define do
 
     factory :manager, class: Manager do
     end
+
+    factory :preceptor, class: Manager do
+    end
   end
 end

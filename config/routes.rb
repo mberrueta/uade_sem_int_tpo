@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     resources :students, only: :create
     resources :teachers, only: :create
     resources :managers, only: :create
+    resources :managers, path: :preceptors, only: :create
   end
 
   resources :students, exept: :create do
@@ -20,6 +21,10 @@ Rails.application.routes.draw do
   end
 
   resources :managers, exept: :create do
+    resources :courses, only: :index
+  end
+
+  resources :managers, path: :preceptors, exept: :create do
     resources :courses, only: :index
   end
 

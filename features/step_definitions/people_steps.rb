@@ -55,3 +55,15 @@ Then('the student qualification report is included in the response') do
   expect(parsed_response_body[:qualification_report]).not_to be_nil
   expect(parsed_response_body[:qualification_report][:qualification_report_subjects]).not_to be_nil
 end
+
+Then('the preceptor courses are included in the response') do
+  step('the manager courses are included in the response')
+end
+
+Then('the preceptor first course response students count is {int}') do |count|
+  step("the manager first course response students count is #{count}")
+end
+
+Then('the preceptor first course response subjects count is {int}') do |count|
+  step("the manager first course response subjects count is #{count}")
+end

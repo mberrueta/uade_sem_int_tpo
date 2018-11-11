@@ -3,7 +3,7 @@ Then('the course has been created') do
 end
 
 Given('there is a course with ID {string}') do |id|
-  @manager ||= create(:manager)
+  @manager ||= @preceptor || create(:manager)
   @course = create(:course, id: id, manager: @manager)
 end
 
