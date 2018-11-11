@@ -11,6 +11,7 @@ Then('the exam is included in the response') do
   @exam ||= Exam.find(parsed_response_body[:id])
   expect(parsed_response_body[:id]).to eq(@exam.reload.id)
   expect(parsed_response_body[:title]).to eq(@exam.title)
+  expect(parsed_response_body[:lesson][:id]).to eq(@exam.lesson_id) if @exam.lesson
 end
 
 Then('the exam title is now {string}') do |title|
@@ -25,4 +26,17 @@ Then('the exam was removed') do
   expect(Exam.find_by(id: @exam.id)).to be_nil
 end
 
+Given('the student has pending the exam for the lesson with ID {string}') do |id|
+  @lesson = Lesson.find(id)
+  create_list(:exam_question, 3, exam: @lesson.exam)
+  @student_exam = create(:student_exam, student: @student, exam: @lesson.exam)
+end
+
+Given('the student has made the exam for the lesson with ID {string}') do |id|
+  step("the student has pending the exam for the lesson with ID '#{id}'")
+
+  @lesson.exam_questions.each do |exam_question|
+    @student_exam.student_answers << create(:student_answer, exam_question: exam_question, student_exam: @student_exam)
+  end
+end
 

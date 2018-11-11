@@ -1,5 +1,5 @@
 class TopicsController < ApplicationController
-  before_action :load_program, only: :create
+  before_action :load_lesson, only: :create
   before_action :load, only: [:show, :update, :destroy]
 
   def index
@@ -12,7 +12,7 @@ class TopicsController < ApplicationController
 
   def create
     @topic = Topic.new(resource_params)
-    @topic.program = @program
+    @topic.lesson = @lesson
 
     if @topic.save
       render json: @topic

@@ -20,21 +20,21 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   create_table "academic_calendars", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "organization_id"
     t.integer "year"
-    t.string "calendar_type"w
+    t.string "calendar_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["organization_id"], name: "index_academic_calendars_on_organization_id"
   end
 
-  create_table "assists", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+  create_table "attendances", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_id"
     t.uuid "course_id"
     t.date "date"
     t.string "present_code"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_assists_on_course_id"
-    t.index ["student_id"], name: "index_assists_on_student_id"
+    t.index ["course_id"], name: "index_attendances_on_course_id"
+    t.index ["student_id"], name: "index_attendances_on_student_id"
   end
 
   create_table "courses", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -61,10 +61,24 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "exams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
-    t.uuid "subject_id"
+    t.boolean "enabled"
+    t.uuid "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_exams_on_subject_id"
+    t.index ["lesson_id"], name: "index_exams_on_lesson_id"
+  end
+
+  create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "subject_id"
+    t.date "date"
+    t.boolean "done", default: false
+    t.integer "class_number"
+    t.string "title"
+    t.string "description"
+    t.string "picture_url"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_lessons_on_subject_id"
   end
 
   create_table "news", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -110,19 +124,6 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.index ["organization_id"], name: "index_people_on_organization_id"
   end
 
-  create_table "programs", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "subject_id"
-    t.date "date"
-    t.boolean "done", default: false
-    t.integer "class_number"
-    t.string "title"
-    t.string "description"
-    t.string "picture_url"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["subject_id"], name: "index_programs_on_subject_id"
-  end
-
   create_table "qualification_report_subjects", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "subject_id"
     t.uuid "qualification_report_id"
@@ -144,10 +145,11 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "student_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_exam_id"
-    t.string "answer_code"
-    t.boolean "correct"
+    t.uuid "exam_question_id"
+    t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exam_question_id"], name: "index_student_answers_on_exam_question_id"
     t.index ["student_exam_id"], name: "index_student_answers_on_student_exam_id"
   end
 
@@ -185,33 +187,34 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   end
 
   create_table "topics", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
-    t.uuid "program_id"
+    t.uuid "lesson_id"
     t.string "title"
     t.string "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["program_id"], name: "index_topics_on_program_id"
+    t.index ["lesson_id"], name: "index_topics_on_lesson_id"
   end
 
   add_foreign_key "academic_calendars", "organizations"
-  add_foreign_key "assists", "courses"
-  add_foreign_key "assists", "people", column: "student_id"
+  add_foreign_key "attendances", "courses"
+  add_foreign_key "attendances", "people", column: "student_id"
   add_foreign_key "courses", "academic_calendars"
   add_foreign_key "courses", "people", column: "manager_id"
   add_foreign_key "exam_questions", "exams"
-  add_foreign_key "exams", "subjects"
+  add_foreign_key "exams", "lessons"
+  add_foreign_key "lessons", "subjects"
   add_foreign_key "news", "organizations"
   add_foreign_key "people", "courses"
   add_foreign_key "people", "organizations"
-  add_foreign_key "programs", "subjects"
   add_foreign_key "qualification_report_subjects", "qualification_reports"
   add_foreign_key "qualification_report_subjects", "subjects"
   add_foreign_key "qualification_reports", "people", column: "student_id"
+  add_foreign_key "student_answers", "exam_questions"
   add_foreign_key "student_answers", "student_exams"
   add_foreign_key "student_exam_qualifications", "student_exams"
   add_foreign_key "student_exams", "exams"
   add_foreign_key "student_exams", "people", column: "student_id"
   add_foreign_key "subjects", "courses"
   add_foreign_key "subjects", "people", column: "teacher_id"
-  add_foreign_key "topics", "programs"
+  add_foreign_key "topics", "lessons"
 end

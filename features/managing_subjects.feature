@@ -43,7 +43,7 @@ Feature: Managing subjects
 
   Scenario: Viewing single subject
     Given there is a subject with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
-    And there is a program with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
+    And there is a lesson with ID "7ebf6360-f840-44f5-b1a5-b690fc2b4435"
     And there is a topic with ID "0d11ec5c-4004-4f7e-aa51-9e3e36e8862b"
     And there is a topic with ID "6140de1d-db63-47de-9a0f-80a79b11ed51"
     When I request GET /subjects/76ff8ffc-e643-443d-aa87-9ec344317f65
@@ -52,15 +52,18 @@ Feature: Managing subjects
 
   Scenario: Updating subject
     Given there is a subject with ID 'c27c9832-bad7-4c74-ae81-5a20789e0637'
+    And there is a 'teacher' with ID 'e7ca8ac5-2644-4054-8df9-7986d0bade0f'
     When I request PUT /subjects/c27c9832-bad7-4c74-ae81-5a20789e0637 with the payload:
       """
       {
-        "name": "2B"
+        "name": "2B",
+        "teacher_id": "e7ca8ac5-2644-4054-8df9-7986d0bade0f"
       }
       """
     Then I get a 200 response
     And the subject is included in the response
     And the subject name is now "2B"
+    And the subject teacher_id is now "e7ca8ac5-2644-4054-8df9-7986d0bade0f"
 
   Scenario: Updating a subjectthat not exists
     And there is a subject with ID 'a75a227b-bdc4-40ab-ae4c-482c81b4aa8a'

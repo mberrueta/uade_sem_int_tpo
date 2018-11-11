@@ -1,18 +1,19 @@
 class ExamsController < ApplicationController
-  before_action :load_subject, only: :create
+  before_action :load_lesson, only: :create
   before_action :load, only: [:show, :update, :destroy]
+  before_action :load_list, only: :index
 
   def index
-    render json: Exam.all
+    render json: @exams
   end
 
   def show
-    render json: @exam
+    render json: @exam, serializer: ::ExamSerializer
   end
 
   def create
     exam = Exam.new(resource_params)
-    exam.subject = @subject
+    exam.lesson = @lesson
 
     if exam.save
       render json: exam
@@ -42,10 +43,15 @@ class ExamsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:title)
+    params.permit(:title, :lesson_id)
   end
 
   def load
     @exam = Exam.find_by(id: params[:id])
+  end
+
+  def load_list
+    @exams = Exam.where(lesson_id: params[:lesson_id]) if params[:lesson_id]
+    @exams ||= Exam.all
   end
 end

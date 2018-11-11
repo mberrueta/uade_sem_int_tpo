@@ -15,6 +15,7 @@ Then('the {string} is included in the response') do |_type|
   expect(parsed_response_body[:address]).to eq(@person.address)
   expect(parsed_response_body[:email]).to eq(@person.email)
   expect(parsed_response_body[:gender]).to eq(@person.gender)
+  expect(parsed_response_body[:gender]).to eq(@person.gender)
 end
 
 Then('the {string} first name is now {string}') do |_type, first_name|
@@ -54,4 +55,16 @@ end
 Then('the student qualification report is included in the response') do
   expect(parsed_response_body[:qualification_report]).not_to be_nil
   expect(parsed_response_body[:qualification_report][:qualification_report_subjects]).not_to be_nil
+end
+
+Then('the preceptor courses are included in the response') do
+  step('the manager courses are included in the response')
+end
+
+Then('the preceptor first course response students count is {int}') do |count|
+  step("the manager first course response students count is #{count}")
+end
+
+Then('the preceptor first course response subjects count is {int}') do |count|
+  step("the manager first course response subjects count is #{count}")
 end

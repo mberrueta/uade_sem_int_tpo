@@ -64,12 +64,25 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :courses, :people, column: :manager_id
     add_foreign_key :subjects, :people, column: :teacher_id
 
-    create_table :exams, id: :uuid  do |t|
-      t.string :title, required: true
+    create_table :lessons, id: :uuid  do |t|
       t.uuid :subject_id, index: true
+      t.date :date
+      t.boolean :done, default: false
+      t.integer :class_number
+      t.string :title
+      t.string :description
+      t.string :picture_url
       t.timestamps
     end
-    add_foreign_key :exams, :subjects
+    add_foreign_key :lessons, :subjects
+
+    create_table :exams, id: :uuid  do |t|
+      t.string :title, required: true
+      t.boolean :enabled
+      t.uuid :lesson_id, index: true
+      t.timestamps
+    end
+    add_foreign_key :exams, :lessons
 
     create_table :student_exams, id: :uuid  do |t|
       t.uuid :exam_id, index: true
@@ -80,20 +93,21 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :student_exams, :people, column: :student_id
     add_foreign_key :student_exams, :exams
 
-    create_table :student_answers, id: :uuid  do |t|
-      t.uuid :student_exam_id, index: true
-      t.string :answer_code
-      t.boolean :correct
-      t.timestamps
-    end
-    add_foreign_key :student_answers, :student_exams
-
     create_table :exam_questions, id: :uuid  do |t|
       t.uuid :exam_id, index: true
       t.string :question
       t.json :options, default: {}
       t.timestamps
     end
+
+    create_table :student_answers, id: :uuid  do |t|
+      t.uuid :student_exam_id, index: true, required: true
+      t.uuid :exam_question_id, index: true, required: true
+      t.string :answer, required: true
+      t.timestamps
+    end
+    add_foreign_key :student_answers, :student_exams
+    add_foreign_key :student_answers, :exam_questions
     add_foreign_key :exam_questions, :exams
 
     create_table :student_exam_qualifications, id: :uuid  do |t|
@@ -122,15 +136,15 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :qualification_report_subjects, :subjects
     add_foreign_key :qualification_report_subjects, :qualification_reports
 
-    create_table :assists, id: :uuid  do |t|
+    create_table :attendances, id: :uuid  do |t|
       t.uuid :student_id, index: true
       t.uuid :course_id, index: true
       t.date :date
       t.string :present_code
       t.timestamps
     end
-    add_foreign_key :assists, :people, column: :student_id
-    add_foreign_key :assists, :courses
+    add_foreign_key :attendances, :people, column: :student_id
+    add_foreign_key :attendances, :courses
 
     create_table :news, id: :uuid  do |t|
       t.uuid :organization_id, index: true
@@ -145,24 +159,12 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_index :news, [:newsable_type, :newsable_id]
     add_foreign_key :news, :organizations
 
-    create_table :programs, id: :uuid  do |t|
-      t.uuid :subject_id, index: true
-      t.date :date
-      t.boolean :done, default: false
-      t.integer :class_number
-      t.string :title
-      t.string :description
-      t.string :picture_url
-      t.timestamps
-    end
-    add_foreign_key :programs, :subjects
-
     create_table :topics, id: :uuid  do |t|
-      t.uuid :program_id, index: true
+      t.uuid :lesson_id, index: true
       t.string :title
       t.string :description
       t.timestamps
     end
-    add_foreign_key :topics, :programs
+    add_foreign_key :topics, :lessons
   end
 end

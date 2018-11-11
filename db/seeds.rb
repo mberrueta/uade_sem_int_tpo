@@ -145,7 +145,7 @@ Teacher.find_or_create_by(
   organization: organization1
 )
 
-program = Program.find_or_create_by(
+lesson = Lesson.find_or_create_by(
   id: "67e5f2be-af30-4f4d-b709-77b83656d0c7",
   subject: subject,
   date: 'Wed, 08 May 2019',
@@ -156,7 +156,7 @@ program = Program.find_or_create_by(
   class_number: 1
 )
 
-Program.find_or_create_by(
+lesson1 = Lesson.find_or_create_by(
   id: "ea2ba1c4-7d3a-4197-97dd-38b3c6d2452f",
   subject: subject,
   date: 'Wed, 12 May 2019',
@@ -167,7 +167,7 @@ Program.find_or_create_by(
   class_number: 2
 )
 
-Program.find_or_create_by(
+lesson2 = Lesson.find_or_create_by(
   id: "05102142-cc75-467f-9fbf-c35a8f891654",
   subject: subject,
   date: 'Wed, 15 May 2019',
@@ -178,7 +178,7 @@ Program.find_or_create_by(
   class_number: 3
 )
 
-Program.find_or_create_by(
+Lesson.find_or_create_by(
   id: "81d5c87d-4bd8-458b-a319-08364ba3c001",
   subject: subject,
   date: 'Wed, 15 May 2019',
@@ -191,21 +191,21 @@ Program.find_or_create_by(
 
 Topic.find_or_create_by(
   id: "59bb41e8-cea7-4ef6-bf82-c058e21b9524",
-  program: program,
+  lesson: lesson,
   title: "Causas de la Primera Guerra Mundial",
   description: nil
 )
 
 Topic.find_or_create_by(
   id: "d7684532-f488-44cc-9b00-258f41b9cc3d",
-  program: program,
+  lesson: lesson,
   title: "El inicio de la gran guerra",
   description: nil
 )
 
 Topic.find_or_create_by(
   id: "1dd29f65-1e8a-4554-95fb-ca5430399641",
-  program: program,
+  lesson: lesson,
   title: "Desarrollo de la guerra",
   description: nil
 )
@@ -213,19 +213,19 @@ Topic.find_or_create_by(
 exam = Exam.find_or_create_by(
   id: "05107a51-85ec-42ed-8a76-cd7f89dc2447",
   title: "Ming Murphy",
-  subject: subject
+  lesson: lesson
 )
 
 Exam.find_or_create_by(
   id: "d9693e26-d248-49fb-85dd-e2af68aa7bf2",
   title: "Mike Hammes",
-  subject: subject
+  lesson: lesson1
 )
 
 Exam.find_or_create_by(
   id: "cfdd960d-c313-4bc6-96a0-d4e583f79f74",
   title: "Carmelo Conroy",
-  subject: subject
+  lesson: lesson2
 )
 
 ExamQuestion.find_or_create_by(
@@ -257,21 +257,21 @@ ExamQuestion.find_or_create_by(
   eq.save!
 end
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'e32706a9-81c6-4d03-8b26-bdcd81fce04f',
   course: course,
   student: student,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'c8534b10-9ff9-4b88-8715-fe279b8b1ac4',
   course: course,
   student: student,
   date: '2018-10-29',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '19002f55-130d-4c4e-af85-11337baaadb3',
   course: course,
   student: student,
@@ -279,21 +279,21 @@ Assist.find_or_create_by(
   present_code: 'full'
 )
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '13b601cb-fce6-4006-9e6a-cdee00dd20df',
   course: course,
   student: student2,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'd3cb747e-edec-4559-ba0b-0365f2627f79',
   course: course,
   student: student2,
   date: '2018-10-29',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: 'c75e85e5-fcb1-4c8f-a39e-e20172006d7f',
   course: course,
   student: student2,
@@ -301,14 +301,14 @@ Assist.find_or_create_by(
   present_code: 'half'
 )
 
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '2f2fc2de-23d0-4f10-9972-25c29962cf97',
   course: course,
   student: student3,
   date: '2018-10-28',
   present_code: 'full'
 )
-Assist.find_or_create_by(
+Attendance.find_or_create_by(
   id: '4d0a102e-9797-493a-b332-b3205a10c436',
   course: course,
   student: student3,

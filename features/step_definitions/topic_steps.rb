@@ -3,8 +3,8 @@ Then('the topic has been created') do
 end
 
 Given('there is a topic with ID {string}') do |id|
-  @program ||= create(:program)
-  @topic = create(:topic, id: id, program: @program)
+  @lesson ||= create(:lesson)
+  @topic = create(:topic, id: id, lesson: @lesson)
 end
 
 Then('the topic is included in the response') do

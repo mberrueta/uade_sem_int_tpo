@@ -28,10 +28,39 @@ Feature: Managing student exams
     Given there is a student exam with ID '03818d84-75fc-40d0-aa74-343c35fce55e'
     And there is a 'student' with ID 'd9cf7a8f-ebdf-4ce5-861e-a54a1c674e25'
     And there is a student exam with ID '452de058-a5bb-4976-89e8-f3150cb59c24'
+    And there is a student exam with ID '4688847a-861a-4fd9-a1b2-7c76d8accd1e'
     When I request GET /students/d9cf7a8f-ebdf-4ce5-861e-a54a1c674e25/student-exams
     Then I get a 200 response
-    And there are 1 student exams in the response
+    And there are 2 student exams in the response
     And the student exam with ID "452de058-a5bb-4976-89e8-f3150cb59c24" is included in the response
+
+  Scenario: Listing exams by lesson
+    Given there is a 'student' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
+    And there is a lesson with ID '713f50cb-3eb1-411e-be9d-2c794387dd9c'
+    And there is a lesson with ID 'cb25947b-704d-49b8-8e03-c2974526ff8b'
+    And the student has pending the exam for the lesson with ID '713f50cb-3eb1-411e-be9d-2c794387dd9c'
+    And the student has made the exam for the lesson with ID 'cb25947b-704d-49b8-8e03-c2974526ff8b'
+    When I request GET lessons/cb25947b-704d-49b8-8e03-c2974526ff8b/student-exams
+    Then I get a 200 response
+    And there are 1 exams in the response
+
+  Scenario: Listing exams by student & lesson
+    Given there is a 'student' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
+    And there is a lesson with ID '713f50cb-3eb1-411e-be9d-2c794387dd9c'
+    And there is a lesson with ID 'cb25947b-704d-49b8-8e03-c2974526ff8b'
+    And the student has pending the exam for the lesson with ID '713f50cb-3eb1-411e-be9d-2c794387dd9c'
+    And the student has made the exam for the lesson with ID 'cb25947b-704d-49b8-8e03-c2974526ff8b'
+    And there is a student exam with ID '452de058-a5bb-4976-89e8-f3150cb59c24'
+    And there is a student exam with ID '4688847a-861a-4fd9-a1b2-7c76d8accd1e'
+    And there is a 'student' with ID '07c247a7-da81-4524-80a5-30218d774c8a'
+    And there is a lesson with ID '71a77273-39de-45e6-b243-066dbc0eb658'
+    And there is a lesson with ID '89705550-4fe2-4103-aefd-b434279a2dca'
+    And there is a student exam with ID '5d4cbfb7-70a4-4709-aa27-b215d5eab5d2'
+    And there is a student exam with ID 'a2dde719-4da6-47bc-85d7-3bf0d7b91ca2'
+    And the student has pending the exam for the lesson with ID '71a77273-39de-45e6-b243-066dbc0eb658'
+    When I request GET students/ccc54dc3-32a3-49e7-85e9-929038387529/student-exams?lesson_id=cb25947b-704d-49b8-8e03-c2974526ff8b
+    Then I get a 200 response
+    And there are 1 exams in the response
 
   Scenario: Viewing single student_exam
     Given there is a student exam with ID '0939824e-dff4-47c4-b5bf-e9e697826e4b'
