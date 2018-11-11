@@ -7,6 +7,7 @@ class Lesson < ApplicationRecord
   belongs_to :subject
 
   delegate :count, to: :topics, prefix: true
+  delegate :teacher, to: :subject
 
   private
 
