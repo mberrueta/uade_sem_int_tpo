@@ -61,6 +61,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "exams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
+    t.boolean "enabled"
     t.uuid "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -144,10 +145,11 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "student_answers", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.uuid "student_exam_id"
-    t.string "answer_code"
-    t.boolean "correct"
+    t.uuid "exam_question_id"
+    t.string "answer"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["exam_question_id"], name: "index_student_answers_on_exam_question_id"
     t.index ["student_exam_id"], name: "index_student_answers_on_student_exam_id"
   end
 
@@ -207,6 +209,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "qualification_report_subjects", "qualification_reports"
   add_foreign_key "qualification_report_subjects", "subjects"
   add_foreign_key "qualification_reports", "people", column: "student_id"
+  add_foreign_key "student_answers", "exam_questions"
   add_foreign_key "student_answers", "student_exams"
   add_foreign_key "student_exam_qualifications", "student_exams"
   add_foreign_key "student_exams", "exams"

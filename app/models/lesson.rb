@@ -9,6 +9,7 @@ class Lesson < ApplicationRecord
 
   delegate :count, to: :topics, prefix: true
   delegate :teacher, to: :subject
+  delegate :exam_questions, to: :exam
 
   after_create :create_exam, unless: :exam
 

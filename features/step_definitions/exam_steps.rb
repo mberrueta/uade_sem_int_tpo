@@ -26,4 +26,17 @@ Then('the exam was removed') do
   expect(Exam.find_by(id: @exam.id)).to be_nil
 end
 
+Given('the student has pending the exam for the lesson with ID {string}') do |id|
+  @lesson = Lesson.find(id)
+  create_list(:exam_question, 3, exam: @lesson.exam)
+  @student_exam = create(:student_exam, student: @student, exam: @lesson.exam)
+end
+
+Given('the student has made the exam for the lesson with ID {string}') do |id|
+  step("the student has pending the exam for the lesson with ID '#{id}'")
+
+  @lesson.exam_questions.each do |exam_question|
+    @student_exam.student_answers << create(:student_answer, exam_question: exam_question, student_exam: @student_exam)
+  end
+end
 

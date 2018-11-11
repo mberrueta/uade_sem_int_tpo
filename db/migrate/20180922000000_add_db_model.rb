@@ -78,7 +78,7 @@ class AddDbModel < ActiveRecord::Migration[5.2]
 
     create_table :exams, id: :uuid  do |t|
       t.string :title, required: true
-      t.boolean :enabled,
+      t.boolean :enabled
       t.uuid :lesson_id, index: true
       t.timestamps
     end
@@ -93,20 +93,21 @@ class AddDbModel < ActiveRecord::Migration[5.2]
     add_foreign_key :student_exams, :people, column: :student_id
     add_foreign_key :student_exams, :exams
 
-    create_table :student_answers, id: :uuid  do |t|
-      t.uuid :student_exam_id, index: true
-      t.string :answer_code
-      t.boolean :correct
-      t.timestamps
-    end
-    add_foreign_key :student_answers, :student_exams
-
     create_table :exam_questions, id: :uuid  do |t|
       t.uuid :exam_id, index: true
       t.string :question
       t.json :options, default: {}
       t.timestamps
     end
+
+    create_table :student_answers, id: :uuid  do |t|
+      t.uuid :student_exam_id, index: true, required: true
+      t.uuid :exam_question_id, index: true, required: true
+      t.string :answer, required: true
+      t.timestamps
+    end
+    add_foreign_key :student_answers, :student_exams
+    add_foreign_key :student_answers, :exam_questions
     add_foreign_key :exam_questions, :exams
 
     create_table :student_exam_qualifications, id: :uuid  do |t|

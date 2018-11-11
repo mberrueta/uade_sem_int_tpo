@@ -23,6 +23,13 @@ Feature: Managing exams
     Then I get a 200 response
     And there are 2 exams in the response
 
+  Scenario: Listing exams by lesson
+    Given there is a lesson with ID '58545799-ef74-43b7-bc25-eebab25c7f2f'
+    And there is a lesson with ID '561081b0-b460-44d9-af91-b5689a303b47'
+    When I request GET /lessons/58545799-ef74-43b7-bc25-eebab25c7f2f/exams/
+    Then I get a 200 response
+    And there are 1 exams in the response
+
   Scenario: Viewing single exam
     Given there is an exam with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
     When I request GET /exams/76ff8ffc-e643-443d-aa87-9ec344317f65

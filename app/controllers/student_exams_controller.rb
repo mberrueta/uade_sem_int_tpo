@@ -56,8 +56,9 @@ class StudentExamsController < ApplicationController
   end
 
   def load_list
-    @student_exams = StudentExam.where(student_id: params[:student_id]) if params[:student_id]
-    @student_exams = StudentExam.where(exam_id: params[:exam_id]) if params[:exam_id]
-    @student_exams ||= StudentExam.all
+    @student_exams = StudentExam.all
+    @student_exams = @student_exams.where(student_id: params[:student_id]) if params[:student_id]
+    @student_exams = @student_exams.where(exam_id: params[:exam_id]) if params[:exam_id]
+    @student_exams = @student_exams.joins(:exam).where(exams: { lesson_id: params[:lesson_id] }) if params[:lesson_id]
   end
 end
