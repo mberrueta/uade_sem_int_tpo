@@ -43,7 +43,7 @@ class ExamsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:title, :lesson_id)
+    params.permit(:title, :lesson_id, :enabled)
   end
 
   def load

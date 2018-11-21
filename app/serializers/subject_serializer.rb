@@ -3,4 +3,5 @@ class SubjectSerializer < AbstractSerializer
 
   has_many :lessons
   belongs_to :teacher
+  belongs_to :course
 end
