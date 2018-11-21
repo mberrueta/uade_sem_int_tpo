@@ -43,7 +43,7 @@ class CoursesController < ApplicationController
   private
 
   def resource_params
-    params.permit(:name, :max_students)
+    params.permit(:name, :max_students, :classroom, :shift)
   end
 
   def load
