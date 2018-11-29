@@ -10,12 +10,12 @@ class StudentExamsController < ApplicationController
   end
 
   def show
-    render json: @student_exam, include: [:exam, :student_answers, :student_exam_qualifications]
+    render json: @student_exam, include: [:student_answers, :student_exam_qualifications, exam: :exam_questions]
   end
 
   def create
     if @student_exam.save
-      render json: @student_exam
+      render json: @student_exam, include: [exam: :exam_questions]
     else
       render json: { errors: @student_exam.errors.full_messages }, status: :unprocessable_entity
     end

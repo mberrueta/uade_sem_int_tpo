@@ -7,6 +7,7 @@ Feature: Managing student exams
   Scenario: Creating an student exam with minimum required attributes
     Given there is a 'student' with ID '2bd474fc-07a4-4af3-a5a8-8befec1bda9e'
     And there is an exam with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
+    And the exam has 3 questions
     When I request POST students/2bd474fc-07a4-4af3-a5a8-8befec1bda9e/student-exams with the payload:
       """
       {

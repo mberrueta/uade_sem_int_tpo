@@ -1,5 +1,5 @@
 class LessonSerializer < AbstractSerializer
-  attributes :date, :done, :class_number, :topics_count, :title, :description, :picture_url
+  attributes :date, :done, :class_number, :topics_count, :title, :description, :picture_url, :exam_enabled
 
   belongs_to :subject
   has_many :topics, serializer: ::TopicSerializer

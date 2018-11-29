@@ -42,7 +42,7 @@ class StudentsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:first_name, :last_name, :phone, :address, :gender, :email, :course_id)
+    params.permit(:first_name, :last_name, :dni, :phone, :address, :gender, :email, :course_id)
   end
 
   def load

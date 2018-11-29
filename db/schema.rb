@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_22_000000) do
+ActiveRecord::Schema.define(version: 2018_11_29_025736) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "pgcrypto"
@@ -61,11 +61,23 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
 
   create_table "exams", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
     t.string "title"
-    t.boolean "enabled", default: false
+    t.boolean "enabled"
     t.uuid "lesson_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["lesson_id"], name: "index_exams_on_lesson_id"
+  end
+
+  create_table "feedback", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
+    t.uuid "student_id"
+    t.uuid "to_id"
+    t.string "to_type"
+    t.integer "value"
+    t.string "comments"
+    t.boolean "viewed", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_feedback_on_student_id"
   end
 
   create_table "lessons", id: :uuid, default: -> { "gen_random_uuid()" }, force: :cascade do |t|
@@ -121,6 +133,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
     t.uuid "organization_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "dni", default: ""
     t.index ["organization_id"], name: "index_people_on_organization_id"
   end
 
@@ -202,6 +215,7 @@ ActiveRecord::Schema.define(version: 2018_09_22_000000) do
   add_foreign_key "courses", "people", column: "manager_id"
   add_foreign_key "exam_questions", "exams"
   add_foreign_key "exams", "lessons"
+  add_foreign_key "feedback", "people", column: "student_id"
   add_foreign_key "lessons", "subjects"
   add_foreign_key "news", "organizations"
   add_foreign_key "people", "courses"

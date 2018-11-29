@@ -43,7 +43,7 @@ class TeachersController < ApplicationController
   private
 
   def resource_params
-    params.permit(:first_name, :last_name, :phone, :address, :gender, :email)
+    params.permit(:first_name, :last_name, :dni, :phone, :address, :gender, :email)
   end
 
   def load

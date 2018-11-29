@@ -49,7 +49,7 @@ Feature: Managing subjects
     When I request GET /subjects/76ff8ffc-e643-443d-aa87-9ec344317f65
     Then I get a 200 response
     And the subject is included in the response
-
+    And pretty print the response
   Scenario: Updating subject
     Given there is a subject with ID 'c27c9832-bad7-4c74-ae81-5a20789e0637'
     And there is a 'teacher' with ID 'e7ca8ac5-2644-4054-8df9-7986d0bade0f'

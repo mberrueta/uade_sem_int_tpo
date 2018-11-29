@@ -42,7 +42,7 @@ class ParentsController < ApplicationController
   private
 
   def resource_params
-    params.permit(:first_name, :last_name, :phone, :address, :gender, :email, students: [])
+    params.permit(:first_name, :last_name, :dni, :phone, :address, :gender, :email, students: [])
   end
 
   def load

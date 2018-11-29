@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::API
-  LIST = [:organization, :student, :exam, :subject, :lesson, :course, :academic_calendar].freeze
+  LIST = [:organization, :teacher, :manager, :preceptor, :student, :exam, :subject, :lesson, :course, :academic_calendar, :student_exam, :exam_question].freeze
 
   LIST.each do |object|
     define_method("load_#{object}") do
