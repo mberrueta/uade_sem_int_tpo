@@ -12,6 +12,7 @@ Rails.application.routes.draw do
     resources :student_exams, path: 'student-exams', only: [:create, :index]
     resources :attendances, only: :index
     resources :exams, only: :index
+    resources :feedback, only: :index
   end
 
   resources :parents, exept: :create
@@ -19,6 +20,7 @@ Rails.application.routes.draw do
   resources :teachers, exept: :create do
     resources :subjects, only: :index
     resources :lessons, only: :index
+    resources :feedback, only: [:index, :create]
   end
 
   resources :managers, exept: :create do
@@ -27,6 +29,7 @@ Rails.application.routes.draw do
 
   resources :managers, path: :preceptors, exept: :create do
     resources :courses, only: :index
+    resources :feedback, only: [:index, :create]
   end
 
   resources :academic_calendars, path: 'academic-calendars', except: :create do
@@ -46,6 +49,7 @@ Rails.application.routes.draw do
     resources :topics, only: :create
     resources :exams, only: [:create, :index]
     resources :student_exams, path: 'student-exams', only: :index
+    resources :feedback, only: [:index, :create]
   end
 
   resources :topics, except: :create
@@ -65,4 +69,6 @@ Rails.application.routes.draw do
   resources :student_answers, path: 'student-answers', except: :create
 
   resources :login, only: :create
+
+  resources :feedback, except: :create
 end
