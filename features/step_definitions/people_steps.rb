@@ -15,7 +15,7 @@ Then('the {string} is included in the response') do |_type|
   expect(parsed_response_body[:address]).to eq(@person.address)
   expect(parsed_response_body[:email]).to eq(@person.email)
   expect(parsed_response_body[:gender]).to eq(@person.gender)
-  expect(parsed_response_body[:gender]).to eq(@person.gender)
+  expect(parsed_response_body[:dni]).to eq(@person.dni)
 end
 
 Then('the {string} first name is now {string}') do |_type, first_name|
@@ -67,4 +67,9 @@ end
 
 Then('the preceptor first course response subjects count is {int}') do |count|
   step("the manager first course response subjects count is #{count}")
+end
+
+Given('the {string} {string} is {string}') do |type, attr, value|
+  obj = instance_variable_get("@#{type}")
+  obj.send(:update!, attr => value)
 end

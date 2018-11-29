@@ -17,7 +17,7 @@ Feature: Managing student exams
     Then I get a 200 response
     And the student exam has been created
     And the student exam is included in the response
-And pretty print the response
+
   Scenario: Listing student exams
     Given there is a student exam with ID '03818d84-75fc-40d0-aa74-343c35fce55e'
     And there is a student exam with ID '452de058-a5bb-4976-89e8-f3150cb59c24'

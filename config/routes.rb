@@ -63,4 +63,6 @@ Rails.application.routes.draw do
   end
 
   resources :student_answers, path: 'student-answers', except: :create
+
+  resources :login, only: :create
 end
