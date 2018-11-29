@@ -58,5 +58,9 @@ Rails.application.routes.draw do
 
   resources :exam_questions, path: 'exam-questions', except: :create
 
-  resources :student_exams, path: 'student-exams', except: :create
+  resources :student_exams, path: 'student-exams', except: :create do
+    resources :student_answers, path: 'student-answers', only: [:create, :index]
+  end
+
+  resources :student_answers, path: 'student-answers', except: :create
 end

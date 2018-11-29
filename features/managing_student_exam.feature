@@ -7,6 +7,7 @@ Feature: Managing student exams
   Scenario: Creating an student exam with minimum required attributes
     Given there is a 'student' with ID '2bd474fc-07a4-4af3-a5a8-8befec1bda9e'
     And there is an exam with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
+    And the exam has 3 questions
     When I request POST students/2bd474fc-07a4-4af3-a5a8-8befec1bda9e/student-exams with the payload:
       """
       {
@@ -16,7 +17,7 @@ Feature: Managing student exams
     Then I get a 200 response
     And the student exam has been created
     And the student exam is included in the response
-
+And pretty print the response
   Scenario: Listing student exams
     Given there is a student exam with ID '03818d84-75fc-40d0-aa74-343c35fce55e'
     And there is a student exam with ID '452de058-a5bb-4976-89e8-f3150cb59c24'

@@ -40,3 +40,10 @@ Given('the student has made the exam for the lesson with ID {string}') do |id|
   end
 end
 
+Given('the exam has a question with ID {string} and options are:') do |id, table|
+  create(:exam_question, id: id, exam: @exam, options: table.rows.flatten)
+end
+
+Given('the exam has {int} questions') do |count|
+  create_list(:exam_question, count, exam: @exam)
+end

@@ -1,4 +1,3 @@
-
 Then('the student exam has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
