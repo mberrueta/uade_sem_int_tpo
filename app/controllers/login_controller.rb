@@ -5,13 +5,13 @@ class LoginController < ApplicationController
     if @person
       render json: @person
     else
-      render json: { errors: 'Invalid email/dni' }, status: :not_found
+      render json: { errors: 'Invalid dni' }, status: :not_found
     end
   end
 
   private
 
   def load_person
-    @person = Person.where(dni: params[:dni], email: params[:email]).first
+    @person = Person.where(dni: params[:dni]).first
   end
 end
