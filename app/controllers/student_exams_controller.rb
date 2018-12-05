@@ -10,7 +10,7 @@ class StudentExamsController < ApplicationController
   end
 
   def show
-    render json: @student_exam, include: [:student_answers, :student_exam_qualifications, exam: :exam_questions]
+    render json: @student_exam, include: [:student_answers, :student_exam_qualification, exam: :exam_questions]
   end
 
   def create

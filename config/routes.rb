@@ -71,4 +71,6 @@ Rails.application.routes.draw do
   resources :login, only: :create
 
   resources :feedback, except: :create
+
+  resources :student_exam_qualifications, path: 'student-exam-qualifications', only: :update
 end

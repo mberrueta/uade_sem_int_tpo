@@ -1,19 +1,5 @@
 class StudentExamQualificationsController < ApplicationController
-  def index
-    render json: @student_exam_qualifications
-  end
-
-  def show
-    render json: @student_exam_qualification
-  end
-
-  def create
-    if @student_exam_qualification.save
-      render json: @student_exam_qualification, status: :created
-    else
-      render_validation_errors
-    end
-  end
+  before_action :load, only: :update
 
   def update
     if @student_exam_qualification.update(resource_params)
@@ -23,17 +9,13 @@ class StudentExamQualificationsController < ApplicationController
     end
   end
 
-  def destroy
-    if @student_exam_qualification.destroy
-      head :no_content
-    else
-      render_validation_errors
-    end
-  end
-
   private
 
   def resource_params
-    params.permit(:name, :organization_id)
+    params.permit(:result, :notes)
+  end
+
+  def load
+    @student_exam_qualification = StudentExamQualification.find_by(id: params[:id])
   end
 end
