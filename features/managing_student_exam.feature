@@ -65,6 +65,16 @@ Feature: Managing student exams
 
   Scenario: Viewing single student_exam
     Given there is a student exam with ID '0939824e-dff4-47c4-b5bf-e9e697826e4b'
+    And the exam has a question with ID '7bf9824d-3dde-4c8b-ad30-a3022423db06' and options are:
+      | options           |
+      | correct one       |
+      | incorrect one     |
+    And there is an incorrect student answer with ID 'd54c0b76-ae84-40b4-a655-1857960c57f5'
+    And the exam has a question with ID '40e46f23-7d21-4fab-afb5-46a358543112' and options are:
+      | options       |
+      | correct one2  |
+      | incorrect one2|
+    And there is a correct student answer with ID '2565a9ae-d8d6-4562-bed6-cb3ca42e2042'
     When I request GET /student-exams/0939824e-dff4-47c4-b5bf-e9e697826e4b
     Then I get a 200 response
     And the student exam is included in the response

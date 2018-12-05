@@ -2,9 +2,16 @@ Then('the student answer has been created') do
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
-Given('there is a student answer with ID {string}') do |id|
+Given('there is an incorrect student answer with ID {string}') do |id|
   @student_exam ||= create(:student_exam)
-  @student_answer = create(:student_answer, id: id, student_exam: @student_exam)
+  @exam_question ||= create(:exam_question)
+  @student_answer = create(:student_answer, id: id, student_exam: @student_exam, exam_question: @exam_question, answer: "I don't remember")
+end
+
+Given('there is a correct student answer with ID {string}') do |id|
+  @student_exam ||= create(:student_exam)
+  @exam_question ||= create(:exam_question)
+  @student_answer = create(:student_answer, id: id, student_exam: @student_exam, exam_question: @exam_question, answer: @exam_question.options.first)
 end
 
 Then('the student answer is included in the response') do
