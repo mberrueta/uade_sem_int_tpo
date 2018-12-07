@@ -51,7 +51,7 @@ class ExamQuestionsController < ApplicationController
   end
 
   def load_list
-    @exam_questions = ExamQuestion.where(exam_id: params[:exam_id]) if params[:exam_id]
+    @exam_questions = ExamQuestion.where(exam_id: params[:exam_id]).order(:created_at) if params[:exam_id]
     @exam_questions ||= ExamQuestion.all
   end
 end

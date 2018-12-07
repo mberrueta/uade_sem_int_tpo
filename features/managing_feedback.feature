@@ -27,8 +27,8 @@ Feature: Managing feedback
       """
       {
           "student_id": "1a916d78-ed1f-4afb-9da9-7d927a7eeb51",
-          "value": 2,
-          "comment": "I don't like too much how the teacher explain things."
+          "value": 1,
+          "comment": "I hate the preceptor."
       }
       """
     Then I get a 200 response
@@ -43,14 +43,30 @@ Feature: Managing feedback
       """
       {
           "student_id": "1a916d78-ed1f-4afb-9da9-7d927a7eeb51",
-          "value": 2,
-          "comment": "I don't like too much how the teacher explain things."
+          "value": 4,
+          "comment": "I like the lesson."
       }
       """
     Then I get a 200 response
     And the feedback has been created
     And the feedback is included in the response
     And the feedback to_id is now "3a20b9d7-4b24-45bd-9dc1-b52731237f8e"
+
+  Scenario: Creating an feedback with minimum required attributes to a exam
+    Given there is a 'exam' with ID '38f05739-2433-43b9-8255-29a86f852a38'
+    Given there is a 'student' with ID '8cf0fc05-9fab-4e97-b553-efd23cde8ad2'
+    When I request POST /exams/38f05739-2433-43b9-8255-29a86f852a38/feedback with the payload:
+      """
+      {
+          "student_id": "8cf0fc05-9fab-4e97-b553-efd23cde8ad2",
+          "value": 5,
+          "comment": "Love it."
+      }
+      """
+    Then I get a 200 response
+    And the feedback has been created
+    And the feedback is included in the response
+    And the feedback to_id is now "38f05739-2433-43b9-8255-29a86f852a38"
 
   Scenario: Listing feedback
     Given there is a feedback with ID 'f884094d-0bf1-4ce7-aeeb-df0f0103ecc4'
@@ -100,6 +116,36 @@ Feature: Managing feedback
     When I request GET /lessons/bf4288f7-bbe2-4297-a166-3026be601475/feedback/
     Then I get a 200 response
     And there are 1 feedback in the response
+
+  Scenario: Listing feedback by lesson and student
+    Given there is a feedback with ID 'e43df1aa-bf88-4aff-9932-0aa81e4a0838'
+    And there is a 'lesson' with ID '89ab1d55-a4c6-47e9-8678-e0da23c24c15'
+    And there is a feedback with ID '09e6333a-bd0e-46f2-836b-c250719d9625'
+    And there is a 'student' with ID 'bbbf2b54-be5b-444e-b882-12d572840796'
+    And there is a feedback with ID '056c7ccf-4e3d-4373-aa7c-3ad1265aed8f'
+    And there is a feedback with ID '80eb3308-0acb-4e60-ac01-4b8c871a1b0d'
+    When I request GET /lessons/89ab1d55-a4c6-47e9-8678-e0da23c24c15/feedback?student_id=bbbf2b54-be5b-444e-b882-12d572840796
+    Then I get a 200 response
+    And there are 2 feedback in the response
+
+  Scenario: Listing feedback by exam
+    Given there is a feedback with ID '9a2a224c-4975-40f9-a631-1a08e2bf4d87'
+    And there is a 'exam' with ID '9a13db95-3519-4641-b9d8-94437dc42d7a'
+    And there is a feedback with ID '6fd87602-8a9b-46ec-a435-446b470e2d82'
+    When I request GET /exams/9a13db95-3519-4641-b9d8-94437dc42d7a/feedback/
+    Then I get a 200 response
+    And there are 1 feedback in the response
+
+  Scenario: Listing feedback by exam and student
+    Given there is a feedback with ID '6f323cb0-a656-4bf7-95d8-f98266d4a3be'
+    And there is a 'exam' with ID '3270d0c6-d969-4ce6-978a-e7d808149d65'
+    And there is a feedback with ID 'e7e5f83b-d4a6-4443-b337-f829cae0ec43'
+    And there is a 'student' with ID '5160e876-b921-4284-97d4-f4ded7c53f35'
+    And there is a feedback with ID '16113180-844e-40d7-b3ae-e0796e25a492'
+    And there is a feedback with ID 'cdd67c13-6a70-40e3-8897-729dea831225'
+    When I request GET /exams/3270d0c6-d969-4ce6-978a-e7d808149d65/feedback?student_id=5160e876-b921-4284-97d4-f4ded7c53f35
+    Then I get a 200 response
+    And there are 2 feedback in the response
 
   Scenario: Viewing single feedback
     Given there is a feedback with ID '76ff8ffc-e643-443d-aa87-9ec344317f65'
