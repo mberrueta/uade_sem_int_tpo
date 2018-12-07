@@ -4,7 +4,7 @@ end
 
 Given('there is a feedback with ID {string}') do |id|
   @student ||= create(:student)
-  to = @lesson || @teacher || @manager || @preceptor || create(:student)
+  to = @exam || @lesson || @teacher || @manager || @preceptor || create(:student)
   @feedback = create(:feedback, id: id, student: @student, to: to)
 end
 

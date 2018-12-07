@@ -6,6 +6,7 @@ class FeedbackController < ApplicationController
   before_action :load_manager, only: :create
   before_action :load_teacher, only: :create
   before_action :load_student, only: :create
+  before_action :load_exam, only: :create
   before_action :instantiate, only: :create
 
   def index
@@ -56,14 +57,15 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.where(to_id: params[:teacher_id]) if params[:teacher_id]
     @feedback = Feedback.where(to_id: params[:manager_id]) if params[:manager_id]
     @feedback = Feedback.where(to_id: params[:lesson_id]) if params[:lesson_id]
-    @feedback = Feedback.where(student_id: params[:student_id]) if params[:student_id]
+    @feedback = Feedback.where(to_id: params[:exam_id]) if params[:exam_id]
     @feedback ||= Feedback.all
+    @feedback = @feedback.where(student_id: params[:student_id]) if params[:student_id]
     @feedback = @feedback.where(viewed: false) if params[:unread]
   end
 
   def instantiate
     @feedback = Feedback.new(resource_params)
     @feedback.student = @student
-    @feedback.to = @lesson || @teacher || @manager
+    @feedback.to = @lesson || @teacher || @manager || @exam
   end
 end

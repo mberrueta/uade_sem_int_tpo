@@ -58,6 +58,7 @@ Rails.application.routes.draw do
 
   resources :exams, except: :create do
     resources :exam_questions, path: 'exam-questions', only: [:create, :index]
+    resources :feedback, only: [:index, :create]
   end
 
   resources :exam_questions, path: 'exam-questions', except: :create
