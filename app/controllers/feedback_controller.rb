@@ -60,6 +60,7 @@ class FeedbackController < ApplicationController
     @feedback = Feedback.where(to_id: params[:exam_id]) if params[:exam_id]
     @feedback ||= Feedback.all
     @feedback = @feedback.where(student_id: params[:student_id]) if params[:student_id]
+    @feedback = @feedback.where(grouped_lesson_id: params[:grouped_lesson_id]) if params[:grouped_lesson_id]
     @feedback = @feedback.where(viewed: false) if params[:unread]
   end
 
