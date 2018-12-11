@@ -128,6 +128,21 @@ Feature: Managing feedback
     Then I get a 200 response
     And there are 2 feedback in the response
 
+  Scenario: Listing feedback to teacher grouped by lesson
+    Given there is a feedback with ID '84203c2c-e91f-46e2-a9c2-ac4a7c9e6e4c'
+    And there is a 'lesson' with ID '89ab1d55-a4c6-47e9-8678-e0da23c24c15'
+    And there is a 'teacher' with ID '80449209-ee0c-40a4-9342-3b58ee505df9'
+    And there is a feedback with ID '0327421e-e9e0-479f-bbbe-66f79872f61a' with grouped lesson ID '89ab1d55-a4c6-47e9-8678-e0da23c24c15'
+    And there is a 'student' with ID 'd4439948-505e-49fd-be9b-a942935fab9f'
+    And there is a feedback with ID 'e4f482d9-2104-4ada-833f-efba53421f6d' with grouped lesson ID '89ab1d55-a4c6-47e9-8678-e0da23c24c15'
+    And there is a 'student' with ID '9afbc38c-e842-4279-8a61-677004800e10'
+    And there is a feedback with ID '30fe7265-949d-47db-b0c7-3513b1f9aa7c' with grouped lesson ID '89ab1d55-a4c6-47e9-8678-e0da23c24c15'
+    And there is a 'lesson' with ID '0f460018-67cd-411c-bac8-df87850ac57c'
+    And there is a feedback with ID '76689317-7b11-4490-b524-7c805dc38445' with grouped lesson ID '0f460018-67cd-411c-bac8-df87850ac57c'
+    When I request GET /teachers/80449209-ee0c-40a4-9342-3b58ee505df9/feedback?grouped_lesson_id=89ab1d55-a4c6-47e9-8678-e0da23c24c15
+    Then I get a 200 response
+    And there are 3 feedback in the response
+
   Scenario: Listing feedback by exam
     Given there is a feedback with ID '9a2a224c-4975-40f9-a631-1a08e2bf4d87'
     And there is a 'exam' with ID '9a13db95-3519-4641-b9d8-94437dc42d7a'

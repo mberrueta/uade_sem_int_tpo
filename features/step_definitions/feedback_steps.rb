@@ -4,7 +4,7 @@ end
 
 Given('there is a feedback with ID {string}') do |id|
   @student ||= create(:student)
-  to = @exam || @lesson || @teacher || @manager || @preceptor || create(:student)
+  to = @exam || @teacher || @manager || @preceptor  || @lesson || create(:student)
   @feedback = create(:feedback, id: id, student: @student, to: to)
 end
 
@@ -40,4 +40,10 @@ end
 
 Given('the feedback was already viewed') do
   @feedback.update!(viewed: true)
+end
+
+Given("there is a feedback with ID {string} with grouped lesson ID {string}") do |to_id, lesson_id|
+  @student ||= create(:student)
+  to = @exam || @teacher || @manager || @preceptor  || @lesson || create(:student)
+  @feedback = create(:feedback, id: to_id, student: @student, to: to, grouped_lesson_id: lesson_id)
 end
