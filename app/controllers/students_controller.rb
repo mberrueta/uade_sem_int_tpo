@@ -1,9 +1,10 @@
 class StudentsController < ApplicationController
   before_action :load_organization, only: :create
   before_action :load, only: [:show, :update, :destroy]
+  before_action :load_list, only: :index
 
   def index
-    render json: Student.all
+    render json: @students
   end
 
   def show
@@ -47,5 +48,11 @@ class StudentsController < ApplicationController
 
   def load
     @student = Student.find_by(id: params[:id])
+  end
+
+  def load_list
+    @students = Student.all
+    @students = @students.where(course_id: params[:course_id]) if params[:course_id]
+    @students
   end
 end

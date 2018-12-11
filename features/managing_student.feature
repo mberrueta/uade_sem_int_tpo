@@ -30,6 +30,18 @@ Feature: Managing students
     Then I get a 200 response
     And there are 2 'students' in the response
 
+  Scenario: Listing students by course
+    Given there is a 'course' with ID '10b1a910-e0d0-4f91-9c46-f879df4c48e4'
+    And there is a student with ID 'a0d7a691-556a-465b-9d00-5d5619bd734a'
+    And there is a student with ID 'a01747b0-b7b5-4ca5-9cdd-7505699e1494'
+    And there is a 'course' with ID 'aa2c9d87-8393-4382-a378-03ec79d964ef'
+    And there is a student with ID '869f2850-9aa3-46a1-92ec-dbb80b8735f6'
+    And there is a student with ID '07d3f492-d419-40b0-a97b-d64700cdb0e4'
+    And there is a student with ID '4b5f0034-f95e-4918-b4ac-65e1f763ff0b'
+    When I request GET /courses/aa2c9d87-8393-4382-a378-03ec79d964ef/students
+    Then I get a 200 response
+    And there are 3 'students' in the response
+
   Scenario: Viewing single student
     Given there is a 'student' with ID 'ccc54dc3-32a3-49e7-85e9-929038387529'
     And there is an qualification_report with ID 'f77d1ae0-09d3-49e7-8ec8-075b5d67ea7a'

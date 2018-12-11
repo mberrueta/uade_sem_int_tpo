@@ -2,6 +2,11 @@ Then('the {string} has been created') do |_type|
   expect(parsed_response_body[:id]).not_to be_nil
 end
 
+Given('there is a student with ID {string}') do |id|
+  @course ||= create(:course)
+  @student = create(:student, id: id, course: @course)
+end
+
 Given('there is a {string} with ID {string}') do |type, id|
   instance_variable_set("@#{type}", create(type, id: id))
 end

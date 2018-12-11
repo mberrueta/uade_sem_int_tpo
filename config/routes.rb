@@ -38,6 +38,7 @@ Rails.application.routes.draw do
 
   resources :courses, exept: :create do
     resources :subjects, only: [:create, :index]
+    resources :students, only: :index
     resources :attendances, only: :index, only: [:create, :index]
   end
 
