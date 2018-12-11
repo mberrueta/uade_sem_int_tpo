@@ -46,7 +46,7 @@ class FeedbackController < ApplicationController
   private
 
   def resource_params
-    params.permit(:value, :comments, :viewed)
+    params.permit(:value, :comments, :viewed, :grouped_lesson_id)
   end
 
   def load
@@ -67,6 +67,7 @@ class FeedbackController < ApplicationController
   def instantiate
     @feedback = Feedback.new(resource_params)
     @feedback.student = @student
+    @feedback.grouped_lesson_id = params[:grouped_lesson_id]
     @feedback.to = @lesson || @teacher || @manager || @exam
   end
 end
